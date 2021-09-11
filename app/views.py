@@ -9,14 +9,20 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-@login_required(login_url="/login/")
-def index(request):
-    
+# @login_required(login_url="/login/")
+def index(request):    
     context = {}
-    context['segment'] = 'index'
+    context['segment'] = 'home'
 
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
+
+# request contiene la informacion de nuestra peticion en django
+
+
+
+def leccion1(request):
+    return render(request, "index.html")
 
 @login_required(login_url="/login/")
 def pages(request):
@@ -30,6 +36,8 @@ def pages(request):
         
         html_template = loader.get_template( load_template )
         return HttpResponse(html_template.render(context, request))
+
+
         
     except template.TemplateDoesNotExist:
 
