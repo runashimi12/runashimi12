@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/login/")
-def conf(request):
-    return render(request, "./lecciones/admin.html")
+def list_rta(request):
+    return render(request, "./respuestas/list.html")
 
 
 @login_required(login_url="/login/")

@@ -4,7 +4,7 @@ from app import views
 
 urlpatterns = [
     path("curso/", curso, name="curso" ),
-    path("conf/", conf, name="conf" ),
+    path("list_rta/", list_rta, name="list_rta" ),
     path("leccion1/", leccion1, name="leccion1"),
     path("leccion1.1/", leccion1_1, name="leccion1_1"),
     path("leccion1.2/", leccion1_2, name="leccion1_2"),
