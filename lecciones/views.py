@@ -1,3 +1,4 @@
+from lecciones.models import Usuario
 from django.shortcuts import render
 
 
@@ -6,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/login/")
 def list_rta(request):
-    return render(request, "./respuestas/list.html")
+    no_persona=Usuario.objects.count()
+    return render(request, "./respuestas/list.html",{'no_persona':no_persona} )
 
 
 @login_required(login_url="/login/")
