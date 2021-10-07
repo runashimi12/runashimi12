@@ -338,25 +338,30 @@
 
     <script>
         let index = 0;
-        const imgs = [
-            "https://images.unsplash.com/photo-1633509271813-370af82d4bac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
-            "https://images.unsplash.com/photo-1633509167764-928dc8b65a8d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
-            "https://images.unsplash.com/photo-1633113089631-6456cccaadad?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+        const imgsVestidos = [
+            '/static/assets/img/runashimi/vestido1.jpg',
+            '/static/assets/img/runashimi/vestido2.jpg',
+            '/static/assets/img/runashimi/vestido3.jpg',
+            '/static/assets/img/runashimi/vestido4.jpg',
+            '/static/assets/img/runashimi/vestido5.jpg',
+            '/static/assets/img/runashimi/vestido6.jpg',
+            '/static/assets/img/runashimi/vestido7.jpg',
         ];
 
-        const setImg = () => {
+        const setImg = (id) => {
             setTimeout(function () {
-                if (imgs[index]) {
-                    document.getElementById("imgvestimenta").src = imgs[index];
+                if (imgsVestidos[index]) {
+                    document.getElementById(id).src = imgsVestidos[index];
                     index++;
                 } else {
                     index = 0;
-                    document.getElementById("imgvestimenta").src = imgs[index];
+                    document.getElementById(id).src = imgsVestidos[index];
                 }
-                setImg();
+                setImg(id);
             }, 4000);
         };
-        setImg();
+        
+        setImg("imgvestimenta");
     </script>
 
     {% include 'includes/scripts.html' %}
