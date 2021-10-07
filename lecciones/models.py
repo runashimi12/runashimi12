@@ -19,14 +19,14 @@ class Pregunta(models.Model):
     respuesta_p=models.CharField(max_length=255)
     leccion=models.CharField(max_length=255)
     def __str__(self):
-        return f'Pregunta {self.id}: {self.texto} {self.respuesta}, {self.leccion} '
+        return f'Pregunta {self.id}: {self.texto} {self.respuesta_p}, {self.leccion} '
 
 
 class Respuesta(models.Model):
     estudiante=models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
     Preguntas_k=models.ForeignKey(Pregunta, on_delete=models.SET_NULL, null=True)
-    leccion=models.CharField(Pregunta, max_length=255)
+    leccion=models.CharField(max_length=255)
     respuesta=models.CharField(max_length=255)
     calificacion=models.CharField(max_length=255)
     def __str__(self):
-        return f'Pregunta {self.id}: {self.estudiante} {self.Preguntas} {self.leccion} '
+        return f'Pregunta {self.id}: {self.estudiante} {self.Preguntas_k} {self.leccion} {self.respuesta} {self.calificacion} '

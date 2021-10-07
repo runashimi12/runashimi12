@@ -1,14 +1,16 @@
-from lecciones.models import Usuario
-from django.shortcuts import render
+from lecciones.models import Respuesta, Usuario
+from django.shortcuts import get_object_or_404, render
 
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url="/login/")
 def list_rta(request):
-    no_persona=Usuario.objects.count()
-    return render(request, "./respuestas/list.html",{'no_persona':no_persona} )
+    no_respuesta=Respuesta.objects.count()
+    respuestas= Respuesta.objects.all() #hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+    return render(request, "./respuestas/list.html",{'no_respuesta':no_respuesta, 'respuestas': respuestas} )
 
 
 @login_required(login_url="/login/")
