@@ -44,7 +44,7 @@ def leccion2_1(request):
     return render(request, "./lecciones/leccion2.1.html")
 
 @login_required(login_url="/login/")
-def leccion2_1(request):
+def leccion2_2(request):
     return render(request, "./lecciones/leccion2.2.html")
 
 
