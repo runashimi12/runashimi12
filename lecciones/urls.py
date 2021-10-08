@@ -13,6 +13,7 @@ urlpatterns = [
     
     path("leccion2/", leccion2, name="leccion2"),
     path("leccion2.1/", leccion2_1, name="leccion2_1"),
+    path("leccion2.2/", leccion2_2, name="leccion2_2"),
     path("leccion3/", leccion3, name="leccion3"),
     path("leccion4/", leccion4, name="leccion4"),
     path("leccion5/", leccion5, name="leccion5"),
