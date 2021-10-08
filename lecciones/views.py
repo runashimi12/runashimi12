@@ -40,6 +40,11 @@ def leccion2(request):
     return render(request, "./lecciones/leccion2.html")
 
 @login_required(login_url="/login/")
+def leccion2_1(request):
+    return render(request, "./lecciones/leccion2.1.html")
+
+
+@login_required(login_url="/login/")
 def leccion3(request):
     return render(request, "./lecciones/leccion3.html")
 
