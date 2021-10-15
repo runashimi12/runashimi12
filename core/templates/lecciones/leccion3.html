@@ -140,31 +140,33 @@
 			const newItem = {
 				titulo,
 				descripcion,
-				img,
+				img: `/static/assets/img/${img}`,
 				audio,
 			};
 			data.push(newItem);
 		}
 
 		//agregar nuevos items
-		add("titulo", "descripcion", "img", "audio");
-		add("titulo", "descripcion", "img", "audio");
-		add("titulo", "descripcion", "img", "audio");
-		add("titulo", "descripcion", "img", "audio");
-		add("titulo", "descripcion", "img", "audio");
-		add("titulo", "descripcion", "img", "audio");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
+		add("titulo", "descripcion", "numeros/principal.jpg", "");
 
 		//renderizar campos
 		const lista = data.map((item) => {
 			const template = `
+            <div class="col-12 col-sm-6 col-lg-6">
 		      <div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
 		          <div class="px-3 px-lg-4 py-5 text-center animationCard">
 		              <a href="{% url 'leccion1_1' %} " class="nav-link">
-		                  <image src="/static/assets/img/numeros/1.jpg" class="imgLarge" />
+		                  <image src="/static/assets/img/${item.img}" class="imgLarge" />
 		                  <h5 class="fw-bold text-primary">${item.titulo}</h5>
 		              </a>
 		          </div>
 		      </div>
+		    </div>
 		      `;
 			return template;
 		});
