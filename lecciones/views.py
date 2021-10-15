@@ -339,25 +339,3 @@ def leccion7_3(request):
 # FIN leccion 7
 
 
-
-
-
-
-
-
-
-@login_required(login_url="/login/")
-def leccion4(request):
-    return render(request, "./lecciones/leccion4.html")
-
-@login_required(login_url="/login/")
-def leccion5(request):
-    return render(request, "./lecciones/leccion5.html")
-
-@login_required(login_url="/login/")
-def leccion6(request):
-    return render(request, "./lecciones/leccion6.html")
-
-@login_required(login_url="/login/")
-def leccion7(request):
-    return render(request, "./lecciones/leccion7.html")
