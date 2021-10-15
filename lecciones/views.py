@@ -234,15 +234,117 @@ def leccion2_1(request):
 @login_required(login_url="/login/")
 def leccion2_2(request):
     return render(request, "./lecciones/leccion2.2.html")
-@login_required(login_url="/login/")
 
+@login_required(login_url="/login/")
 def leccion2_3(request):
     return render(request, "./lecciones/leccion2.3.html")
 
-
+# INICIO leccion 3
 @login_required(login_url="/login/")
 def leccion3(request):
     return render(request, "./lecciones/leccion3.html")
+
+@login_required(login_url="/login/")
+def leccion3_1(request):
+    return render(request, "./lecciones/leccion3.1.html")
+
+@login_required(login_url="/login/")
+def leccion3_2(request):
+    return render(request, "./lecciones/leccion3.2.html")
+
+@login_required(login_url="/login/")
+def leccion3_3(request):
+    return render(request, "./lecciones/leccion3.3.html")
+# FIN leccion 3
+
+
+
+# INICIO leccion 4
+@login_required(login_url="/login/")
+def leccion4(request):
+    return render(request, "./lecciones/leccion4.html")
+
+@login_required(login_url="/login/")
+def leccion4_1(request):
+    return render(request, "./lecciones/leccion4.1.html")
+
+@login_required(login_url="/login/")
+def leccion4_2(request):
+    return render(request, "./lecciones/leccion4.2.html")
+
+@login_required(login_url="/login/")
+def leccion4_3(request):
+    return render(request, "./lecciones/leccion4.3.html")
+# FIN leccion 4
+
+
+
+# INICIO leccion 5
+@login_required(login_url="/login/")
+def leccion5(request):
+    return render(request, "./lecciones/leccion5.html")
+
+@login_required(login_url="/login/")
+def leccion5_1(request):
+    return render(request, "./lecciones/leccion5.1.html")
+
+@login_required(login_url="/login/")
+def leccion5_2(request):
+    return render(request, "./lecciones/leccion5.2.html")
+
+@login_required(login_url="/login/")
+def leccion5_3(request):
+    return render(request, "./lecciones/leccion5.3.html")
+# FIN leccion 5
+
+
+
+
+# INICIO leccion 6
+@login_required(login_url="/login/")
+def leccion6(request):
+    return render(request, "./lecciones/leccion6.html")
+
+@login_required(login_url="/login/")
+def leccion6_1(request):
+    return render(request, "./lecciones/leccion6.1.html")
+
+@login_required(login_url="/login/")
+def leccion6_2(request):
+    return render(request, "./lecciones/leccion6.2.html")
+
+@login_required(login_url="/login/")
+def leccion6_3(request):
+    return render(request, "./lecciones/leccion6.3.html")
+# FIN leccion 6
+
+
+
+# INICIO leccion 7
+@login_required(login_url="/login/")
+def leccion7(request):
+    return render(request, "./lecciones/leccion7.html")
+
+@login_required(login_url="/login/")
+def leccion7_1(request):
+    return render(request, "./lecciones/leccion7.1.html")
+
+@login_required(login_url="/login/")
+def leccion7_2(request):
+    return render(request, "./lecciones/leccion7.2.html")
+
+@login_required(login_url="/login/")
+def leccion7_3(request):
+    return render(request, "./lecciones/leccion7.3.html")
+# FIN leccion 7
+
+
+
+
+
+
+
+
 
 @login_required(login_url="/login/")
 def leccion4(request):
