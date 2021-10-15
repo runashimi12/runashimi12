@@ -18,6 +18,21 @@ urlpatterns = [
     path("editar_pregunta/<int:id>", editarPregunta, name="editar_pregunta" ),
     path("eliminar_pregunta/<int:id>", eliminarPregunta, name="eliminar_pregunta" ),
 
+    #usuarios
+    path("list_usuario/", listUsuario, name="list_usuario" ),
+    path("agregar_usuario/", agregarUsuario, name="agregar_usuario" ),
+    path("detalle_usuario/<int:id>", detalleUsuario, name="detalle_usuario" ),
+    path("editar_usuario/<int:id>", editarUsuario, name="editar_usuario" ),
+    path("eliminar_usuario/<int:id>", eliminarUsuario, name="eliminar_usuario" ),
+
+
+    #roles
+    path("list_roles/", listRoles, name="list_roles" ),
+    path("agregar_roles/", agregarRoles, name="agregar_roles" ),
+    path("detalle_roles/<int:id>", detalleRoles, name="detalle_roles" ),
+    path("editar_roles/<int:id>", editarRoles, name="editar_roles" ),
+    path("eliminar_roles/<int:id>", eliminarRoles, name="eliminar_roles" ),
+
 
     path("leccion1/", leccion1, name="leccion1"),
     path("leccion1.1/", leccion1_1, name="leccion1_1"),

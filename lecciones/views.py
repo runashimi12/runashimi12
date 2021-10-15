@@ -1,5 +1,5 @@
 from django.forms.models import modelform_factory
-from lecciones.models import Pregunta, Respuesta, Usuario
+from lecciones.models import Pregunta, Respuesta, Rol, Usuario
 from django.shortcuts import get_object_or_404, redirect, render
 
 
@@ -99,7 +99,99 @@ def eliminarPregunta(request, id):
 		pregunta.delete()
 	return redirect('list_pregunta') #direccion ahacia el inicio
 
+# usuarios
 
+@login_required(login_url="/login/")
+def listUsuario(request):
+    no_usuario=Usuario.objects.count()
+    usuarios= Usuario.objects.all() #hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+    return render(request, "./usuarios/list.html",{'no_usuario':no_usuario, 'usuarios': usuarios} )
+
+
+UsuarioForm = modelform_factory(Usuario, exclude=[]) #la clase de modelo que vamos a utilizar
+def agregarUsuario(request):
+    if request.method == 'POST':
+        formaUsuario=UsuarioForm(request.POST) # request.POST vamos a obtener todos los parametros 
+        if formaUsuario.is_valid(): # si es valido podfemos guardar
+            formaUsuario.save()
+            return redirect('list_usuario') #direccion ahacia el inicio
+    else:
+        formaUsuario= UsuarioForm()
+	## mostrar el formulario 	primera vez que se va a mandar el metodo	
+    return  render (request, './usuarios/agregar.html', {'formaUsuario':formaUsuario })
+
+def detalleUsuario(request, id):
+	# persona = Persona.objects.get(pk=id) # en get ponemos el valor de una llave primaria para recuperar un objeto de tipo persona
+	usuario= get_object_or_404(Usuario, pk=id)
+	return render(request, './usuarios/detalle.html',{'usuario':usuario})
+
+
+UsuarioForm = modelform_factory(Usuario, exclude=[]) #la clase de modelo que vamos a utilizar
+def editarUsuario(request, id):
+    usuario=get_object_or_404(Usuario, pk=id)
+    if request.method == 'POST':
+        formaUsuario=UsuarioForm(request.POST, instance=usuario) # request.POST vamos a obtener todos los parametros 
+        if formaUsuario.is_valid(): # si es valido podfemos guardar
+            formaUsuario.save()
+            return redirect('list_usuario') #direccion ahacia el inicio
+    else:
+        formaUsuario= UsuarioForm(instance=usuario)
+	## mostrar el formulario 	primera vez que se va a mandar el metodo	
+    return  render (request, './usuarios/editar.html', {'formaUsuario':formaUsuario })
+
+def eliminarUsuario(request, id):
+	usuario= get_object_or_404(Usuario, pk=id)
+#si se envio la informacion de tipo POST entonces ya tenemos que procesar nuestro formulario cad auno de los parametros qeu estamos enviando de nuestro cliente
+	if usuario:
+		usuario.delete()
+	return redirect('list_usuario') #direccion ahacia el inicio
+
+ #Roles
+
+@login_required(login_url="/login/")
+def listRoles(request):
+    no_roles=Rol.objects.count()
+    roles= Rol.objects.all() #hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+    return render(request, "./roles/list.html",{'no_roles': no_roles, 'roles': roles} )
+
+
+RolesForm = modelform_factory(Rol, exclude=[]) #la clase de modelo que vamos a utilizar
+def agregarRoles(request):
+    if request.method == 'POST':
+        formaRoles=RolesForm(request.POST) # request.POST vamos a obtener todos los parametros 
+        if formaRoles.is_valid(): # si es valido podfemos guardar
+            formaRoles.save()
+            return redirect('list_roles') #direccion ahacia el inicio
+    else:
+        formaRoles= RolesForm()
+	## mostrar el formulario 	primera vez que se va a mandar el metodo	
+    return  render (request, './roles/agregar.html', {'formaRoles':formaRoles })
+
+def detalleRoles(request, id):
+	# persona = Persona.objects.get(pk=id) # en get ponemos el valor de una llave primaria para recuperar un objeto de tipo persona
+	rol= get_object_or_404(Rol, pk=id)
+	return render(request, './roles/detalle.html',{'rol':rol})
+
+
+RolesForm = modelform_factory(Rol, exclude=[]) #la clase de modelo que vamos a utilizar
+def editarRoles(request, id):
+    rol=get_object_or_404(Rol, pk=id)
+    if request.method == 'POST':
+        formaRoles=RolesForm(request.POST, instance=rol) # request.POST vamos a obtener todos los parametros 
+        if formaRoles.is_valid(): # si es valido podfemos guardar
+            formaRoles.save()
+            return redirect('list_roles') #direccion ahacia el inicio
+    else:
+        formaRoles= RolesForm(instance=rol)
+	## mostrar el formulario 	primera vez que se va a mandar el metodo	
+    return  render (request, './roles/editar.html', {'formaRoles':formaRoles })
+
+def eliminarRoles(request, id):
+	rol= get_object_or_404(Rol, pk=id)
+#si se envio la informacion de tipo POST entonces ya tenemos que procesar nuestro formulario cad auno de los parametros qeu estamos enviando de nuestro cliente
+	if rol:
+		rol.delete()
+	return redirect('list_roles') #direccion ahacia el inicio
 
 @login_required(login_url="/login/")
 def curso(request):
