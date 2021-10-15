@@ -295,6 +295,9 @@ def leccion5_2(request):
 @login_required(login_url="/login/")
 def leccion5_3(request):
     return render(request, "./lecciones/leccion5.3.html")
+@login_required(login_url="/login/")
+def leccion5_4(request):
+    return render(request, "./lecciones/leccion5.4.html")
 # FIN leccion 5
 
 
