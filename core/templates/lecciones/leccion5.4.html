@@ -120,57 +120,60 @@
 					</li>
 				</ol>
 			</nav>
+
 			<div class="row justify-content-center mb-5 mb-lg-6">
 				<div class="col-12 text-center">
-					<h2 class="h1 px-lg-5">Leccion 5</h2>
-					<!-- <p class="lead px-lg-8">En el presente software encontrará expresiones lingüísticas culturales acerca de la revitalización de la lengua Runa shimi, como mecanismo de apropiación de nuestro idioma propio que identifica al Pueblo Yanacona y especialmente al Resguardo de Pancitará.</p> -->
+					<h2 class="h1 px-lg-5">Leccion 5.4</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion5_1' %} " class="nav-link">
-								<image src="/static/assets/img/leccion5/principalcortes.png" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Cortes</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion5_2' %} " class="nav-link">
-								<image src="/static/assets/img/leccion5/principalcuerpo.png" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Partes del cuerpo</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion5_3' %} " class="nav-link">
-								<image src="/static/assets/img/leccion5/principalfamilia.png" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Familia</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion5_4' %} " class="nav-link">
-								<image src="/static/assets/img/leccion5/principalprendas.png" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Prendas</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+
+			<div class="row" id="lesson"></div>
 		</div>
 	</section>
+	<script>
+		//crear un componente
+		const data = [];
 
+		function add(titulo, descripcion, img, audio) {
+			const newItem = {
+				//titulo,
+				descripcion,
+				img: `/static/assets/img/leccion5/${img}`,
+				audio,
+			};
+			data.push(newItem);
+		}
+
+		//cuerpo
+		add("alpargatas", "", "alpargatas.png", "");
+		add("blusa", "", "blusa.png", "");
+		add("camisa", "", "camisa.png", "");
+		add("chumbe", "", "chumbe.png", "");
+		add("falda", "", "falda.png", "");
+		add("mochilla", "", "mochilla.png", "");
+		add("pantalon", "", "pantalon.png", "");
+		add("ruana", "", "ruana.png", "");
+		add("sombrero", "", "sombrero.png", "");
+		//prendas
+
+		//renderizar campos
+		const lista = data.map((item, index) => {
+			const template = `
+            <div class="col-6">
+		      <div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
+		          <div class="px-3 px-lg-4 py-5 text-center animationCard">
+		              <a href="#" class="nav-link">
+		                  <image src="${item.img}" class="imgLarge" />
+		                  ${item.titulo ? `<h5 class="fw-bold text-primary">${item.titulo}</h5>` : ""}
+		              </a>
+		          </div>
+		      </div>
+		    </div>
+		      `;
+			return template;
+		});
+		document.getElementById("lesson").innerHTML = lista.join(" ");
+	</script>
 	<!--fin-->
 </div>
 
