@@ -93,6 +93,10 @@
 	<!-- inicio-->
 
 	<section>
+
+		
+
+
 		<div>
 			<nav aria-label="breadcrumb" class="d-none d-md-inline-block">
 				<ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -126,6 +130,15 @@
 					<h2 class="h1 px-lg-5">Vocales</h2>
 					<!-- <p class="lead px-lg-8">En el presente software encontrará expresiones lingüísticas culturales acerca de la revitalización de la lengua Runa shimi, como mecanismo de apropiación de nuestro idioma propio que identifica al Pueblo Yanacona y especialmente al Resguardo de Pancitará.</p> -->
 				</div>
+
+<!-- inicio -->
+<p>Pon a prueba tus conocimientos con una pregunta 
+	<button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal" data-bs-target="#modal-form">Aprende ahora</button>	<div class="col-lg-4">
+	<!-- Button Modal -->
+
+</div></p>
+<!-- fin -->
+
 			</div>
 			<div class="row">
 				<div class="col-12 col-sm-6 col-lg-4">
@@ -171,6 +184,36 @@
 
 	<!--fin-->
 </div>
+
+	<!-- Modal Content -->
+	<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body p-0">
+					<div class="card p-3 p-lg-4">
+						<button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+						<div class="text-center text-md-center mb-4 mt-md-0">
+							<h1 class="mb-0 h4">Aprende ahora</h1>
+						</div>
+						<form action="#" class="mt-4">
+							<!-- Form -->
+							
+							{{formaRespuesta}}
+							<!-- End of Form -->
+							
+							<div class="d-grid">
+								<button type="submit" class="btn btn-gray-800">Enviar</button>
+							</div>
+							{% csrf_token %} 
+						</form>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of Modal Content -->
+
 
 {% endblock content %}
 

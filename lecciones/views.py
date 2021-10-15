@@ -203,7 +203,15 @@ def leccion1(request):
 
 @login_required(login_url="/login/")
 def leccion1_1(request):
-    return render(request, "./lecciones/leccion1.1.html")
+    if request.method == 'POST':
+        formaPersona=RespuestaForm(request.POST) # request.POST vamos a obtener todos los parametros 
+        if formaPersona.is_valid(): # si es valido podfemos guardar
+            formaPersona.save()
+            return redirect('list_rta') #direccion ahacia el inicio
+    else:
+        formaRespuesta= RespuestaForm()
+    return render(request, "./lecciones/leccion1.1.html", {'formaRespuesta':formaRespuesta })
+
 
 
 @login_required(login_url="/login/")
