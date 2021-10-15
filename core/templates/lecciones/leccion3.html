@@ -126,7 +126,38 @@
 					<!-- <p class="lead px-lg-8">En el presente software encontrará expresiones lingüísticas culturales acerca de la revitalización de la lengua Runa shimi, como mecanismo de apropiación de nuestro idioma propio que identifica al Pueblo Yanacona y especialmente al Resguardo de Pancitará.</p> -->
 				</div>
 			</div>
-			<div class="row" id="lesson"></div>
+			<div class="row" id="lesson">
+				<div class="col-6">
+					<div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
+						<div class="px-3 px-lg-4 py-5 text-center animationCard">
+							<a href="{% url 'leccion3_1' %} " class="nav-link">
+								<image src="/static/assets/img/leccion3/principal.png" class="imgLarge" />
+								<h5 class="fw-bold text-primary">Días de la semana</h5>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
+						<div class="px-3 px-lg-4 py-5 text-center animationCard">
+							<a href="{% url 'leccion3_2' %} " class="nav-link">
+								<image src="/static/assets/img/leccion3/principalverbos.png" class="imgLarge" />
+								<h5 class="fw-bold text-primary">Verbos</h5>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
+						<div class="px-3 px-lg-4 py-5 text-center animationCard">
+							<a href="{% url 'leccion3_3' %} " class="nav-link">
+								<image src="/static/assets/img/leccion3/principalmeses.png" class="imgLarge" />
+								<h5 class="fw-bold text-primary">Meses del mes</h5>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -145,9 +176,9 @@
 		}
 
 		//agregar nuevos items
-		add("Días de la semana", "", "leccion3/principal.png", "");
-		add("Verbos", "", "leccion3/principal.png", "");
-		add("Meses del año", "", "leccion3/principal.png", "");
+		//add("Días de la semana", "", "leccion3/principal.png", "");
+		//add("Verbos", "", "leccion3/principal.png", "");
+		//add("Meses del año", "", "leccion3/principal.png", "");
 
 		//renderizar campos
 		const lista = data.map((item, index) => {
