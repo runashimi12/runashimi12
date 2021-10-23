@@ -120,48 +120,67 @@
 					</li>
 				</ol>
 			</nav>
+
 			<div class="row justify-content-center mb-5 mb-lg-6">
 				<div class="col-12 text-center">
-					<h2 class="h1 px-lg-5">Leccion 7</h2>
-					<!-- <p class="lead px-lg-8">En el presente software encontrará expresiones lingüísticas culturales acerca de la revitalización de la lengua Runa shimi, como mecanismo de apropiación de nuestro idioma propio que identifica al Pueblo Yanacona y especialmente al Resguardo de Pancitará.</p> -->
+					<h2 class="h1 px-lg-5">Leccion 7.3</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion7_1' %} " class="nav-link">
-								<image src="/static/assets/img/leccion7/animales.jpg" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Animales Domésticos</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion7_2' %} " class="nav-link">
-								<image src="/static/assets/img/leccion7/principalanimals.jpg" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Animales Silvestres</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-lg-4">
-					<div class="card bg-white shadow-soft text-primary rounded mb-4">
-						<div class="px-3 px-lg-4 py-5 text-center animationCard">
-							<a href="{% url 'leccion7_3' %} " class="nav-link">
-								<image src="/static/assets/img/leccion7/principalgeo.png" class="imgLarge" />
-								<h5 class="fw-bold text-primary">Figuras Geométricas</h5>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
+
+			<div class="row" id="lesson"></div>
 		</div>
 	</section>
+	<script>
+		//crear un componente
+		const data = [];
 
+		function add(titulo, descripcion, img, audio) {
+			const newItem = {
+				//titulo,
+				descripcion,
+				img: `/static/assets/img/leccion7/${img}`,
+				audio,
+			};
+			data.push(newItem);
+		}
+
+		//cortesia
+		add("circulo", "", "circulo.jpg", "");
+		add("cuadrado", "", "cuadrado.jpg", "");
+		add("decagono", "", "decagono.jpg", "");
+		add("enegono", "", "enegono.jpg", "");
+		add("heptagono", "", "heptagono.jpg", "");
+		add("hexagono", "", "hexagono.jpg", "");
+		add("octagono", "", "octagono.jpg", "");
+		add("ovalo", "", "ovalo.jpg", "");
+		add("pentagono", "", "pentagono.jpg", "");
+		add("rectangulo", "", "rectangulo.jpg", "");
+		add("rombo", "", "rombo.jpg", "");
+		add("trianguloobtusangulo", "", "trianguloobtusangulo.jpg", "");
+		add("triangulo", "", "triangulo.jpg", "");
+
+		//familia
+
+		//prendas
+
+		//renderizar campos
+		const lista = data.map((item, index) => {
+			const template = `
+            <div class="col-6">
+		      <div class="card bg-white shadow-soft text-primary rounded mb-4 selectColor">
+		          <div class="px-3 px-lg-4 py-5 text-center animationCard">
+		              <a href="#" class="nav-link">
+		                  <image src="${item.img}" class="imgLarge" />
+		                  ${item.titulo ? `<h5 class="fw-bold text-primary">${item.titulo}</h5>` : ""}
+		              </a>
+		          </div>
+		      </div>
+		    </div>
+		      `;
+			return template;
+		});
+		document.getElementById("lesson").innerHTML = lista.join(" ");
+	</script>
 	<!--fin-->
 </div>
 
