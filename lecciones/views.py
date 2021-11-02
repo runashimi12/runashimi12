@@ -1,5 +1,5 @@
 from django.forms.models import modelform_factory
-from lecciones.models import Pregunta, Respuesta, Rol, Usuario
+from lecciones.models import Pregunta, ElegirRespuesta, Rol, Usuario
 from django.shortcuts import get_object_or_404, redirect, render
 
 
@@ -10,16 +10,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/login/")
 def list_rta(request):
-    no_respuesta=Respuesta.objects.count()
-    respuestas= Respuesta.objects.all() #hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+    no_respuesta=ElegirRespuesta.objects.count()
+    respuestas= ElegirRespuesta.objects.all() #hacemos un query para recuperar todos los objetos de tipo Persona en la BD
     return render(request, "./respuestas/list.html",{'no_respuesta':no_respuesta, 'respuestas': respuestas} )
 
 def detalleRespuesta(request, id):
 	# persona = Persona.objects.get(pk=id) # en get ponemos el valor de una llave primaria para recuperar un objeto de tipo persona
-	respuesta= get_object_or_404(Respuesta, pk=id)
+	respuesta= get_object_or_404(ElegirRespuesta, pk=id)
 	return render(request, './respuestas/detalle.html',{'respuesta':respuesta})
 
-RespuestaForm = modelform_factory(Respuesta, exclude=[]) #la clase de modelo que vamos a utilizar
+RespuestaForm = modelform_factory(ElegirRespuesta, exclude=[]) #la clase de modelo que vamos a utilizar
 def agregarRespuesta(request):
     if request.method == 'POST':
         formaPersona=RespuestaForm(request.POST) # request.POST vamos a obtener todos los parametros 
@@ -31,9 +31,9 @@ def agregarRespuesta(request):
 	## mostrar el formulario 	primera vez que se va a mandar el metodo	
     return  render (request, './respuestas/agregar.html', {'formaRespuesta':formaRespuesta })
 
-RespuestaForm = modelform_factory(Respuesta, exclude=[]) #la clase de modelo que vamos a utilizar
+RespuestaForm = modelform_factory(ElegirRespuesta, exclude=[]) #la clase de modelo que vamos a utilizar
 def editarRespuesta(request, id):
-    respuesta=get_object_or_404(Respuesta, pk=id)
+    respuesta=get_object_or_404(ElegirRespuesta, pk=id)
     if request.method == 'POST':
         formaPersona=RespuestaForm(request.POST, instance=respuesta) # request.POST vamos a obtener todos los parametros 
         if formaPersona.is_valid(): # si es valido podfemos guardar
@@ -45,7 +45,7 @@ def editarRespuesta(request, id):
     return  render (request, './respuestas/editar.html', {'formaRespuesta':formaRespuesta })
 
 def eliminarRespuesta(request, id):
-	respuesta= get_object_or_404(Respuesta, pk=id)
+	respuesta= get_object_or_404(ElegirRespuesta, pk=id)
 #si se envio la informacion de tipo POST entonces ya tenemos que procesar nuestro formulario cad auno de los parametros qeu estamos enviando de nuestro cliente
 	if respuesta:
 		respuesta.delete()
