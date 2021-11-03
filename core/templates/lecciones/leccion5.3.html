@@ -136,20 +136,22 @@
 
 		function add(titulo, descripcion, img, audio) {
 			const newItem = {
-				//titulo,
+				titulo,
 				descripcion,
-				img: `/static/assets/img/leccion5/${img}`,
+				img: `/static/assets/img/leccion5/familia/${img}`,
 				audio,
 			};
 			data.push(newItem);
 		}
 
 		//cuerpo
-		add("familia", "", "familia.png", "");
-		add("familia2", "", "familia2.png", "");
-		add("familia3", "", "familia3.png", "");
-		add("familia4", "", "familia4.png", "");
-		add("familia5", "", "familia5.png", "");
+		add("Abuela", "", "abuela.png", "");
+		add("Esposa/Esposo", "", "esposo_a.png", "");
+		add("Hermana/Hermano", "", "hermanoa.png", "");
+		add("Mamá e hija", "", "mamahija.png", "");
+		add("Nieta", "", "nieta.png", "");
+		add("Papá e hijo", "", "paphijo.png", "");
+		add("Tia/Tio", "", "tiatio.png", "");
 
 		//familia
 
