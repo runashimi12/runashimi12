@@ -1,5 +1,6 @@
 from lecciones.models import  Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.contrib import admin
+from .form import ELegirInlineFormset
 
 # Register your models here.
 
@@ -7,6 +8,7 @@ class ElegirRespuestaInline(admin.TabularInline):
     model=ElegirRespuesta
     max_num= ElegirRespuesta.MAXIMO_RESPUESTA
     min_num= ElegirRespuesta.MAXIMO_RESPUESTA
+    formset= ELegirInlineFormset 
 
 
 class PreguntaAdmin(admin.ModelAdmin):
