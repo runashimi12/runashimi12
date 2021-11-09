@@ -6,6 +6,7 @@ from .form import ELegirInlineFormset
 
 class ElegirRespuestaInline(admin.TabularInline):
     model=ElegirRespuesta
+    can_delete =False
     max_num= ElegirRespuesta.MAXIMO_RESPUESTA
     min_num= ElegirRespuesta.MAXIMO_RESPUESTA
     formset= ELegirInlineFormset 
@@ -18,13 +19,13 @@ class PreguntaAdmin(admin.ModelAdmin):
     search_fields=['texto', 'preguntas__texto']
 
 class PreguntasRespondidasAdmin(admin.ModelAdmin):
-    list_display =['pregunta', 'respuesta', 'correcta']
+    list_display = ['pregunta', 'respuesta', 'correcta', 'puntaje_obtenido']
 
     class Meta:
         model= PreguntaRespondida
 
 admin.site.register(Usuario);
-
+admin.site.register(PreguntaRespondida)
 admin.site.register(Pregunta, PreguntaAdmin);
 
 

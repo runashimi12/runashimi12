@@ -99,16 +99,7 @@
 					<p class="lead px-lg-8">En esta sesión puede aprender sobre las vocales </p>
 				</div>
 
-				<!-- inicio -->
-				<p>Pon a prueba tus conocimientos con una pregunta </p>
-				<button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal"
-					data-bs-target="#modal-form">Aprende ahora</button>
-				<div class="col-lg-4">
-					<!-- Button Modal -->
-
-				</div>
-				</p>
-				<!-- fin -->
+				
 
 			</div>
 			<div class="row">
@@ -156,6 +147,17 @@
 	<!--fin-->
 </div>
 
+<!-- inicio -->
+<p>Pon a prueba tus conocimientos con una pregunta </p>
+<button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal"
+	data-bs-target="#modal-form">Aprende ahora</button>
+<div class="col-lg-4">
+	<!-- Button Modal -->
+
+</div>
+</p>
+<!-- fin -->
+
 <!-- Modal Content -->
 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -166,15 +168,54 @@
 					<div class="text-center text-md-center mb-4 mt-md-0">
 						<h1 class="mb-0 h4">Aprende ahora</h1>
 					</div>
+					{% block contenido %}
+					{{pregunta}}
 
+					{% if pregunta is None %}
+
+					<div class="container">
+						<div class="jumbotron my-4">
+							<h1>Ya haz respondido a todas nuestras preguntas. Mira el tablero de posiciones</h1>
+							<a href="{% url 'tablero' %}">Ver Aqui</a>
+						</div>
+					</div>
+
+					{% else %}
+					<div class="container">
+						<div classs="jumbotron my-4">
+							<h3>
+								{{pregunta.texto}}
+							</h3>
+							<form method="POST" class="form">
+								{% csrf_token %}
+								<input type=hidden name="pregunta_pk" value="{{pregunta.pk}}">
+								{% for opciones in pregunta.opciones.all %}
+								<div clas="form-check mx-4">
+									<input class="form-check-input" type="radio" name="respuesta_pk"
+										value="{{opciones.pk}}" id="choice-{{forloop.counter}}">
+									<label class="form-check-label" for="choice-{{forloop.counter}}">
+										{{opciones.texto}}
+								</div>
+								{% endfor %}
+								<button type="submit" class="btn btn-success">
+									Enviar </button>
+							</form>
+						</div>
+					</div>
+
+					{% endif %}
+
+
+
+					{% endblock %}
 					<div>
-						
-				</div>
 
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <!-- End of Modal Content -->
 

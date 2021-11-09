@@ -34,6 +34,10 @@ urlpatterns = [
     path("eliminar_roles/<int:id>", eliminarRoles, name="eliminar_roles" ),
 
 
+    #tablero
+    path('tablero/', tablero, name='tablero'),
+    path('resultado/<int:pregunta_respondida_pk>/', resultado_pregunta, name='resultado'),
+
     path("leccion1/", leccion1, name="leccion1"),
     path("leccion1.1/", leccion1_1, name="leccion1_1"),
     path("leccion1.2/", leccion1_2, name="leccion1_2"),
