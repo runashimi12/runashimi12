@@ -20,14 +20,11 @@ class PreguntaAdmin(admin.ModelAdmin):
 
 class PreguntasRespondidasAdmin(admin.ModelAdmin):
     list_display = ['pregunta', 'respuesta', 'correcta', 'puntaje_obtenido']
-
     class Meta:
         model= PreguntaRespondida
 
-admin.site.register(Usuario);
 admin.site.register(PreguntaRespondida)
 admin.site.register(Pregunta, PreguntaAdmin);
-
-
 admin.site.register(ElegirRespuesta);
+admin.site.register(Usuario);
 admin.site.register(Rol);
