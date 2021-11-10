@@ -1,7 +1,8 @@
 from django.forms.models import modelform_factory
+from django.http.response import Http404
 from lecciones.models import Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -274,25 +275,43 @@ def leccion1_1(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
+        
         pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
         respuesta_pk = request.POST.get('respuesta_pk')
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+            
         except ObjectDoesNotExist:
             raise Http404
         
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
         return redirect('resultado', pregunta_respondida.pk)
     else:
-        pregunta = QuizUser.obtener_nuevas_preguntas()
-        if pregunta is not None:
-            QuizUser.crear_intentos(pregunta)
-        context = {
+        try:            
+            #pregunta=Pregunta.objects.get(leccion=id)
+            pregunta = QuizUser.obtener_nuevas_preguntas(id)
+            if pregunta is not None:
+                QuizUser.crear_intentos(pregunta)
+            context = {
             'pregunta': pregunta
 
         }
-
+        except ObjectDoesNotExist:
+            #raise Http404
+            return redirect('leccion1')
+        
+        #pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+      
     return render(request, "./lecciones/leccion1.1.html", context)
+ # if pregunta is not None:
+  #          QuizUser.crear_intentos(pregunta)
+    #    context = {
+    #        'pregunta': pregunta
+
+     #   }
 
 def resultado_pregunta(request, pregunta_respondida_pk):
 	respondida = get_object_or_404(PreguntaRespondida, pk=pregunta_respondida_pk)
@@ -306,11 +325,67 @@ def resultado_pregunta(request, pregunta_respondida_pk):
 
 @login_required(login_url="/login/")
 def leccion1_2(request):
-    return render(request, "./lecciones/leccion1.2.html")
+    id = 2
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+            pregunta=Pregunta.objects.get(leccion=id)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        try:            
+            #pregunta=Pregunta.objects.get(leccion=id)
+            pregunta = QuizUser.obtener_nuevas_preguntas(id)
+            if pregunta is not None:
+                QuizUser.crear_intentos(pregunta)
+            context = {
+            'pregunta': pregunta
+
+        }
+        except ObjectDoesNotExist:
+            #raise Http404
+            return redirect('leccion1')
+        
+        #pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+    return render(request, "./lecciones/leccion1.2.html", context)
 
 
 @login_required(login_url="/login/")
 def leccion1_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion1.3.html")
 
 
@@ -321,16 +396,88 @@ def leccion2(request):
 
 @login_required(login_url="/login/")
 def leccion2_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion2.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion2_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion2.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion2_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion2.3.html")
 
 # INICIO leccion 3
@@ -343,16 +490,88 @@ def leccion3(request):
 
 @login_required(login_url="/login/")
 def leccion3_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion3.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion3_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion3.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion3_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion3.3.html")
 # FIN leccion 3
 
@@ -365,16 +584,88 @@ def leccion4(request):
 
 @login_required(login_url="/login/")
 def leccion4_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion4.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion4_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion4.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion4_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion4.3.html")
 # FIN leccion 4
 
@@ -382,26 +673,123 @@ def leccion4_3(request):
 # INICIO leccion 5
 @login_required(login_url="/login/")
 def leccion5(request):
+    
     return render(request, "./lecciones/leccion5.html")
 
 
 @login_required(login_url="/login/")
 def leccion5_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion5.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion5_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion5.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion5_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion5.3.html")
 
 
 @login_required(login_url="/login/")
 def leccion5_4(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion5.4.html")
 # FIN leccion 5
 
@@ -409,21 +797,94 @@ def leccion5_4(request):
 # INICIO leccion 6
 @login_required(login_url="/login/")
 def leccion6(request):
+    
     return render(request, "./lecciones/leccion6.html")
 
 
 @login_required(login_url="/login/")
 def leccion6_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion6.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion6_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion6.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion6_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion6.3.html")
 # FIN leccion 6
 
@@ -431,20 +892,116 @@ def leccion6_3(request):
 # INICIO leccion 7
 @login_required(login_url="/login/")
 def leccion7(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion7.html")
 
 
 @login_required(login_url="/login/")
 def leccion7_1(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion7.1.html")
 
 
 @login_required(login_url="/login/")
 def leccion7_2(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion7.2.html")
 
 
 @login_required(login_url="/login/")
 def leccion7_3(request):
+    id = 1
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+        
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        return redirect('resultado', pregunta_respondida.pk)
+    else:
+        pregunta=Pregunta.objects.get(leccion=id)
+        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
+        #pregunta= Pregunta.objects.filter(leccion=id).get()
+        if pregunta is not None:
+            QuizUser.crear_intentos(pregunta)
+        context = {
+            'pregunta': pregunta
+
+        }
     return render(request, "./lecciones/leccion7.3.html")
 # FIN leccion 7

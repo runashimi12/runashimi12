@@ -16,8 +16,8 @@ class Rol(models.Model):
 class Pregunta(models.Model):
     NUMER_DE_RESPUESTAS_PERMITIDAS = 1
     texto= models.TextField(verbose_name= 'Texto de la pregunta')
-    max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5, decimal_places=2, max_digits=6)
-    # leccion=models.CharField(max_length=255, null=True, default=1)
+    max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5,  decimal_places=2, max_digits=6)
+    leccion=models.CharField(max_length=255, null=True, default=1)
     def __str__(self):
         return self.texto
   # respuesta_p=models.CharField(max_length=255, null=True)
@@ -26,7 +26,7 @@ class Pregunta(models.Model):
 class ElegirRespuesta(models.Model):
     MAXIMO_RESPUESTA=4
     pregunta = models.ForeignKey(Pregunta, related_name='opciones', on_delete=models.CASCADE)
-    correcta = models.BooleanField(verbose_name='¿Es esta la pregunta correcta?', default=False, null=False)
+    correcta = models.BooleanField(verbose_name='¿Es esta la pregunta correcta?', null=False)
     texto = models.TextField(verbose_name='Texto de la respuesta')
     def __str__(self):
         return self.texto 
@@ -37,19 +37,31 @@ class ElegirRespuesta(models.Model):
 class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
-    puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, decimal_places=2, max_digits=10)
+    puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
  
  
     def crear_intentos(self, pregunta):
         intento = PreguntaRespondida(pregunta=pregunta, quizUser=self)
         intento.save()
  
-    def obtener_nuevas_preguntas(self):
+    def obtener_nuevas_preguntas(self, id):
         respondidas = PreguntaRespondida.objects.filter(quizUser=self).values_list('pregunta__pk', flat=True)
+       
+
         preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
+        #preguntas_restantes=Pregunta.objects.get(leccion=id)
+        pregunta= Pregunta.objects.filter(leccion=id).get()
+        """ try:
+            preguntas_restantes=Pregunta.objects.get(leccion=id)
+            return preguntas_restantes 
+        except ObjectDoesNotExist:
+            raise Http404    """     
+        if  preguntas_restantes.exists():
+            return pregunta
         if not preguntas_restantes.exists():
             return None
-        return random.choice(preguntas_restantes)
+        #return random.choice(preguntas_restantes)
+        #return pregunta
  
     def validar_intento(self, pregunta_respondida, respuesta_selecionada):
         

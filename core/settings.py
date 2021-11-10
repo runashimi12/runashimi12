@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME'  : 'runa',
+         'NAME'  : 'runas',
          'USER'  : 'postgres',
          'PASSWORD' : 'runa',
          'HOST' : 'localhost',
