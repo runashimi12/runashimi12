@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import random
 
-
+import logging
 
 # Create your models here.
 
@@ -46,22 +46,29 @@ class Usuario(models.Model):
  
     def obtener_nuevas_preguntas(self, id):
         respondidas = PreguntaRespondida.objects.filter(quizUser=self).values_list('pregunta__pk', flat=True)
-       
-
+        #respondidas = PreguntaRespondida.objects.filter(quizUser=self).values_list('pregunta__pk')
+        
+        
+        #respondidas = PreguntaRespondida.objects.filter(quizUser=self)
+        logging.basicConfig(level=logging.NOTSET) # He
         preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        #preguntas_restantes=Pregunta.objects.get(leccion=id)
-        pregunta= Pregunta.objects.filter(leccion=id).get()
-        """ try:
-            preguntas_restantes=Pregunta.objects.get(leccion=id)
-            return preguntas_restantes 
-        except ObjectDoesNotExist:
-            raise Http404    """     
-        if  preguntas_restantes.exists():
-            return pregunta
-        if not preguntas_restantes.exists():
-            return None
+        pregunta= Pregunta.objects.get(leccion=id)
+        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
+        #preguntas_restantes=respondidas.respuesta_seleccionada.correcta
+        logging.debug("**************respondidas*****************Log message goes here.", respondidas)
+        respondid = PreguntaRespondida.objects.filter(quizUser=self).values('pregunta__pk')
+        logging.debug("**************respondida*****************Log message goes here.", respondid)
+        #if preguntas_restantes.exists():
+        #    return None
+     
+        logging.debug("**************pregunta*****************Log message goes here.", pregunta)
+       
+        if  respondid.exists():
+            if pregunta.id in respondidas:
+                logging.debug("**************id si*****************Log message goes here.", respondidas)
+                return None
         #return random.choice(preguntas_restantes)
-        #return pregunta
+        return pregunta
  
     def validar_intento(self, pregunta_respondida, respuesta_selecionada):
         
