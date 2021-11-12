@@ -19,7 +19,7 @@ class Pregunta(models.Model):
     max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5,  decimal_places=2, max_digits=6)
     leccion=models.CharField(max_length=255, null=True, default=1)
     def __str__(self):
-        return self.texto
+        return f'Pregunta {self.id}{self.texto}' 
   # respuesta_p=models.CharField(max_length=255, null=True)
     # estudiante=models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
 
