@@ -186,8 +186,11 @@
 </div>
 <!-- inicio -->
 
-<button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal"
+<div class="d-grid gap-2">
+	<button type="button" class="btn btn-block btn-gray-800 mb-3 btn-success" data-bs-toggle="modal"
 	data-bs-target="#modal-form">Practicar ahora</button>
+</div>
+
 <div class="col-lg-4">
 	<!-- Button Modal -->
 
@@ -211,7 +214,7 @@
 
 					<div class="container">
 						<div class="jumbotron my-4">
-							<h1>Felicitaciones, respondiste a todas las preguntas,  Mira el tablero de posiciones</h1>
+							<h1>Felicitaciones, ya has respondido la pregunta. Mira el tablero de posiciones</h1>
 							
 							<a href="{% url 'tablero' %}">Ver Aqui</a>
 						</div>
