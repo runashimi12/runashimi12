@@ -7,6 +7,7 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
@@ -19,7 +20,8 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
+ALLOWED_HOSTS =['runashimifup.herokuapp.com']
 
 # Application definition
 
@@ -79,16 +81,27 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME'  : 'runas',
-         'USER'  : 'postgres',
-         'PASSWORD' : 'runa',
-         'HOST' : 'localhost',
-         'PORT' : '5432',
-     }
- }
+#DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME'  : 'runas',
+#         'USER'  : 'postgres',
+#         'PASSWORD' : 'runa',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
+DATABASES ={
+        'default': {
+            'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+            'NAME' : 'd47lnb9r0thfif',
+            'USER'  : 'cvgztmnfndazgh',
+            'PASSWORD' : '14a70b5b191c20399b0431fb5bef66592488824b9c2ff4841026679896a6d453',
+            'HOST' : 'ec2-44-194-54-186.compute-1.amazonaws.com',
+            'PORT' : '5432',
+        }
+
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -129,6 +142,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
