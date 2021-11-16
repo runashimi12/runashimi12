@@ -9,6 +9,8 @@ from unipath import Path
 import dj_database_url
 import django_heroku
 
+from decouple import config
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,11 +19,12 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+#DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG= False
 
 # load production server from .env
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
-ALLOWED_HOSTS =['runashimifup.herokuapp.com']
+ALLOWED_HOSTS =['*']
 
 # Application definition
 
@@ -147,6 +150,7 @@ django_heroku.settings(locals())
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'core/static'),
 )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #############################################################
 #############################################################
 
