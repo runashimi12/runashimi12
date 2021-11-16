@@ -67,17 +67,18 @@
 <div class="container">
 	
 	<div class="jumbotron my-4">
-		<h3 class="text-info">{{respondida.pregunta.texto|safe}}</h3>
+		
+
+		<p class="text-info">La pregunta es: {{respondida.pregunta.texto|safe}}</p>
 		<p>
-			<strong>Tu respuesta:</strong>
-			{{respondida.respuesta.texto|safe}}
+			<strong>Tu respuesta:</strong> {{respondida.respuesta.texto|safe}}
 		</p>
 
 
 	{% if respondida.respuesta.correcta %}
-		<h4 class="text-success">Yeah!! Tu respuesta es correcta</h4>
+		<h4 class="text-success">Tu respuesta es correcta</h4>
 	{% else %}
-		<h4 class="text-danger">Tu respuesta es incorrecta!!!</h4>
+		<h4 class="text-danger">Tu respuesta es incorrecta, sigue intentandolo</h4>
 
 		{% for respuesta in respondida.pregunta.opciones.all %}
 
@@ -91,9 +92,9 @@
 
 	{% endif %}
 
-	<a href="{% url 'leccion1' %}">
+	<a href="{% url 'curso' %}">
 		<button class="btn-success">
-			Continuar con la siguiente pregunta
+			Continuar 
 		</button>
 	</a>
 

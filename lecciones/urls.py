@@ -1,6 +1,8 @@
 from lecciones.views import *
 from django.urls import path, re_path
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("curso/", curso, name="curso" ),
@@ -69,4 +71,4 @@ urlpatterns = [
     path("leccion7.1/", leccion7_1, name="leccion7_1"),
     path("leccion7.2/", leccion7_2, name="leccion7_2"),
     path("leccion7.3/", leccion7_3, name="leccion7_3"),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

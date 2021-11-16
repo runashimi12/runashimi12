@@ -24,9 +24,9 @@ class ELegirInlineFormset(forms.BaseInlineFormSet):
 				return
 			if formulario.cleaned_data and formulario.cleaned_data.get('correcta') is True:
 				respuesta_correcta += 1
-			try:
-				assert respuesta_correcta == Pregunta.NUMER_DE_RESPUESTAS_PERMITIDAS #nuestro contador debe ser igual a nuestra pregunta
-			except AssertionError:
-				raise forms.ValidationError('solo una respuesta es permitida')
+		try:
+			assert respuesta_correcta == Pregunta.NUMER_DE_RESPUESTAS_PERMITIDAS
+		except AssertionError:
+			raise forms.ValidationError('solo una respuesta es permitida')
 		
 
