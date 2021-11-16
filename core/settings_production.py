@@ -86,21 +86,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #    }
 #}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME'  : 'runas',
-#         'USER'  : 'postgres',
-#         'PASSWORD' : 'runa',
-#         'HOST' : 'localhost',
-#         'PORT' : '5432',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME'  : 'runas',
+        'USER'  : 'postgres',
+        'PASSWORD' : 'runa',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
