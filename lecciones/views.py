@@ -514,7 +514,7 @@ def leccion2_2(request):
         except ObjectDoesNotExist:
             #raise Http404
             return redirect('curso')
-    return render(request, "./lecciones/leccion2.2.html")
+    return render(request, "./lecciones/leccion2.2.html", context)
 
 
 @login_required(login_url="/login/")
