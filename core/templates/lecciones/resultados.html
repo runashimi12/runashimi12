@@ -77,8 +77,9 @@
 
 	{% if respondida.respuesta.correcta %}
 		<h4 class="text-success">Tu respuesta es correcta</h4>
-	{% else %}
+		<lottie-player src="https://assets4.lottiefiles.com/packages/lf20_znkabqmo.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>	{% else %}
 		<h4 class="text-danger">Tu respuesta es incorrecta, sigue intentandolo</h4>
+		<lottie-player src="https://assets9.lottiefiles.com/packages/lf20_yw3nyrsv.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
 
 		{% for respuesta in respondida.pregunta.opciones.all %}
 
