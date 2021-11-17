@@ -150,8 +150,8 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'core/static'),
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# if config('DJANGO_PRODUCTION_ENV', default=False, cast=bool):
-#     from .settings_production import *
+if config('DJANGO_PRODUCTION_ENV', default=False, cast=bool):
+    from .settings_production import *
 #############################################################
 #############################################################
 

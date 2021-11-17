@@ -245,6 +245,7 @@ def eliminarRoles(request, id):
     return redirect('list_roles')  # direccion ahacia el inicio
 
 
+
 @login_required(login_url="/login/")
 def curso(request):
     return render(request, "dashboard.html")
@@ -518,7 +519,7 @@ def leccion2_2(request):
 
 @login_required(login_url="/login/")
 def leccion2_3(request):
-    id = 5
+    id = 6
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -569,7 +570,7 @@ def leccion3(request):
 
 @login_required(login_url="/login/")
 def leccion3_1(request):
-    id = 6
+    id = 7
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -613,6 +614,7 @@ def leccion3_1(request):
 
 @login_required(login_url="/login/")
 def leccion3_2(request):
+    id = 8
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -656,7 +658,7 @@ def leccion3_2(request):
 
 @login_required(login_url="/login/")
 def leccion3_3(request):
-    id = 8
+    id = 9
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -707,6 +709,7 @@ def leccion4(request):
 
 @login_required(login_url="/login/")
 def leccion4_1(request):
+    id=10
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -750,6 +753,7 @@ def leccion4_1(request):
 
 @login_required(login_url="/login/")
 def leccion4_2(request):
+    id=11
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -793,7 +797,7 @@ def leccion4_2(request):
 
 @login_required(login_url="/login/")
 def leccion4_3(request):
-    id = 11
+    id = 12
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -845,7 +849,7 @@ def leccion5(request):
 
 @login_required(login_url="/login/")
 def leccion5_1(request):
-    id = 12
+    id = 13
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -889,7 +893,7 @@ def leccion5_1(request):
 
 @login_required(login_url="/login/")
 def leccion5_2(request):
-    id = 13
+    id = 14
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -933,7 +937,7 @@ def leccion5_2(request):
 
 @login_required(login_url="/login/")
 def leccion5_3(request):
-    id = 14
+    id = 15
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -977,7 +981,7 @@ def leccion5_3(request):
 
 @login_required(login_url="/login/")
 def leccion5_4(request):
-    id = 15
+    id = 16
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1029,7 +1033,7 @@ def leccion6(request):
 
 @login_required(login_url="/login/")
 def leccion6_1(request):
-    id = 16
+    id = 17
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1073,7 +1077,7 @@ def leccion6_1(request):
 
 @login_required(login_url="/login/")
 def leccion6_2(request):
-    id = 17
+    id = 18
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1117,7 +1121,7 @@ def leccion6_2(request):
 
 @login_required(login_url="/login/")
 def leccion6_3(request):
-    id = 18
+    id = 19
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1163,7 +1167,7 @@ def leccion6_3(request):
 # INICIO leccion 7
 @login_required(login_url="/login/")
 def leccion7(request):
-    id = 19
+    id = 20
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1207,7 +1211,7 @@ def leccion7(request):
 
 @login_required(login_url="/login/")
 def leccion7_1(request):
-    id = 20
+    id = 21
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1251,7 +1255,7 @@ def leccion7_1(request):
 
 @login_required(login_url="/login/")
 def leccion7_2(request):
-    id = 21
+    id = 22
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
@@ -1295,7 +1299,7 @@ def leccion7_2(request):
 
 @login_required(login_url="/login/")
 def leccion7_3(request):
-    id = 22
+    id = 23
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
