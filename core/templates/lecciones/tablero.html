@@ -73,34 +73,34 @@
 	<h1 class="text-center my-4"> 
 		<span class="badge badge-danger">
 
-			Tabla de posiciones. Nro de jugadores {{contar_user}} 
+			Tabla de posiciones. Nro de estudiantes {{contar_user}} 
 			
 		</span>
 	</h1>
-	<div class="text-center">
-		
+	<div class="border-0 shadow table-wrapper table-responsive ">
+		<table class="table table-striped table-bodered table-hover clearfix">
+			<thead>
+				<tr>
+					<th><i class="fas fa-trophy"></i> Posicion</th>
+					<th><i class="fas fa-user"></i> Usuario</th>
+					<th><i class="fas fa-star-half-alt"></i> Puntaje</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user_quiz in usuario_quiz %}
+					<tr>
+						<th>{{forloop.counter}}</th>
+						<th>{{user_quiz.usuario.username}}</th>
+						<th>{{user_quiz.puntaje_total}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 	
 
 
-	<table class="table table-striped table-bodered">
-		<thead>
-			<tr>
-				<th><i class="fas fa-trophy"></i> Posicion</th>
-				<th><i class="fas fa-user"></i> Usuario</th>
-				<th><i class="fas fa-star-half-alt"></i> Puntaje</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for user_quiz in usuario_quiz %}
-				<tr>
-					<th>{{forloop.counter}}</th>
-					<th>{{user_quiz.usuario.username}}</th>
-					<th>{{user_quiz.puntaje_total}}</th>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	
 
 </div>
 
