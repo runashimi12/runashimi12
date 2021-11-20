@@ -47,25 +47,19 @@ class Usuario(models.Model):
     def obtener_nuevas_preguntas(self, id):
         respondidas = PreguntaRespondida.objects.filter(quizUser=self).values_list('pregunta__pk', flat=True)
         #respondidas = PreguntaRespondida.objects.filter(quizUser=self).values_list('pregunta__pk')
-        
-        
         #respondidas = PreguntaRespondida.objects.filter(quizUser=self)
         logging.basicConfig(level=logging.NOTSET) # He
         preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
         pregunta= Pregunta.objects.get(leccion=id)
         #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
         #preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug("**************respondidas*****************Log message goes here.", respondidas)
         respondid = PreguntaRespondida.objects.filter(quizUser=self).values('pregunta__pk')
-        logging.debug("**************respondida*****************Log message goes here.", respondid)
         #if preguntas_restantes.exists():
         #    return None
      
-        logging.debug("**************pregunta*****************Log message goes here.", pregunta)
        
         if  respondid.exists():
             if pregunta.id in respondidas:
-                logging.debug("**************id si*****************Log message goes here.", respondidas)
                 return None
         #return random.choice(preguntas_restantes)
         return pregunta
@@ -92,7 +86,9 @@ class Usuario(models.Model):
         puntaje_actualizado = self.intentos.filter(correcta=True).aggregate(models.Sum('puntaje_obtenido'))['puntaje_obtenido__sum']
         self.puntaje_total = puntaje_actualizado
         self.save()
-       
+    def obtener_puntaje(self):
+        puntaje_total=self.puntaje_total
+        return puntaje_total
    
 class PreguntaRespondida(models.Model):
     quizUser = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='intentos')

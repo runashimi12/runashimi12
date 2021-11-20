@@ -65,6 +65,12 @@
 {% block contenido %}
 
 <div class="container">
+	<div class="progress">
+		
+		<div class="progress-bar bg-success" role="progressbar" style="width: {{ puntaje_total }}%" aria-valuenow="{{puntaje_total}}" aria-valuemin="0" aria-valuemax="100">{{ puntaje_total }}%</div>
+	  </div>
+		
+	  
 	
 	<div class="jumbotron my-4">
 		
@@ -86,6 +92,7 @@
 			{% if respuesta.correcta %}
 
 				<h4>La respuesta correcta es: <span class="text-success">{{respuesta}}</span></h4>
+				
 				
 			{% endif %}
 
