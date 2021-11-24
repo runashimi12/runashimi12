@@ -331,9 +331,13 @@ def leccion1_1(request):
 
 
 def resultado_pregunta(request, pregunta_respondida_pk, puntaje_total):
-    respondida = get_object_or_404(
+    if not puntaje_total is None:   
+        respondida = get_object_or_404(
         PreguntaRespondida, pk=pregunta_respondida_pk)
-    puntaje_totall=round(((float(puntaje_total)*100)/45),2)
+        puntaje_totall=round(((float(puntaje_total)*100)/45),2)
+    else:
+        puntaje_totall=0
+
     context = {
         'respondida': respondida,
         'puntaje_total':puntaje_totall
