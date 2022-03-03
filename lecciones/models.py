@@ -89,6 +89,8 @@ class Usuario(models.Model):
     def obtener_puntaje(self):
         puntaje_total=self.puntaje_total
         return puntaje_total
+    def __str__(self):
+        return f'Usuario {self.id}{self.usuario}{self.puntaje_total}' 
    
 class PreguntaRespondida(models.Model):
     quizUser = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='intentos')
@@ -96,5 +98,7 @@ class PreguntaRespondida(models.Model):
     respuesta= models.ForeignKey(ElegirRespuesta, on_delete=models.CASCADE, null=True)
     correcta = models.BooleanField(verbose_name='Es esta la respuesta correcta?', default=False,null=False)
     puntaje_obtenido = models.DecimalField(verbose_name='Puntaje obtenido', default=0, decimal_places=2, max_digits=6)
+    def __str__(self):
+        return f'PreguntaRespondida {self.id}{self.quizUser}{self.pregunta}{self.puntaje_obtenido}'  
     
 
