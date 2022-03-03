@@ -814,22 +814,11 @@ def leccion4_2(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        pregunta_pk = request.POST.get('pregunta_pk')        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
-        respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -862,22 +851,11 @@ def leccion4_3(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        pregunta_pk = request.POST.get('pregunta_pk')        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
-        respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -918,22 +896,11 @@ def leccion5_1(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        pregunta_pk = request.POST.get('pregunta_pk')        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
-        respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -967,21 +934,11 @@ def leccion5_2(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
-        respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1015,21 +972,12 @@ def leccion5_3(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1063,21 +1011,12 @@ def leccion5_4(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1119,21 +1058,12 @@ def leccion6_1(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1167,21 +1097,12 @@ def leccion6_2(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1215,21 +1136,12 @@ def leccion6_3(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+       
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1270,21 +1182,12 @@ def leccion7_1(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1317,22 +1220,12 @@ def leccion7_2(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        pregunta_pk = request.POST.get('pregunta_pk')        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -1365,22 +1258,11 @@ def leccion7_3(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        pregunta_pk = request.POST.get('pregunta_pk')        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
-        respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
+        respuesta_pk = request.POST.get('respuesta_pk')       
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
