@@ -4,6 +4,7 @@ from django.http.response import Http404
 from lecciones.models import Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -256,13 +257,21 @@ def leccion1(request):
 
 
 def tablero(request):
-    total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')[:10]
+    total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
     contador = total_usaurios_quiz.count()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator= Paginator(total_usaurios_quiz, 10)
+        total_usaurios_quiz = paginator.page(page)
+    except:
+        raise Http404
 
     context = {
 
-        'usuario_quiz': total_usaurios_quiz,
-        'contar_user': contador
+        'entity': total_usaurios_quiz,
+        'contar_user': contador,
+        'paginator': paginator,
     }
 
     return render(request, './lecciones/tablero.html', context)

@@ -68,44 +68,58 @@
 
 {% block contenido %}
 
-<div class="container">
-	
-	<h1 class="text-center my-4"> 
-		<span class="badge badge-danger">
-
-			Tabla de posiciones. Nro de estudiantes {{contar_user}} 
-			
-		</span>
-	</h1>
-	<div class="border-0 shadow table-wrapper table-responsive ">
-		<table class="table table-striped table-bodered table-hover clearfix">
-			<thead>
-				<tr>
-					<th><i class="fas fa-trophy"></i> Posicion</th>
-					<th><i class="fas fa-user"></i> Usuario</th>
-					<th><i class="fas fa-star-half-alt"></i> Puntaje</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for user_quiz in entity %}
-					<tr>
-						<th>{{forloop.counter}}</th>
-						<th>{{user_quiz.usuario.username}}</th>
-						<th>{{user_quiz.puntaje_total}}</th>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<div>
-			´{% include 'lecciones/paginator.html' %}
-		</div>
-	</div>
-	
-
 
 	
 
-</div>
+    {% if paginator.num_pages > 1%}
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            {% if entity.has_previous %}
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="?page={{ entity.previous_page_number }}#pagtable">Anterior</a></li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+                {% if forloop.last and page != entity.number and paginator.num_pages > 7 %} 
+                    {% if entity.next_page_number != paginator.num_pages%}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ entity.number | add:1}}#pagtable">...</a>
+                    </li>
+                    {% endif %}
+                <li class="page-item">
+                        <a class="page-link" href="?page={{paginator.num_pages}}#pagtable">{{paginator.num_pages}}</a>
+                </li>
+                {% endif %}
+                {% if page == entity.number and page > 7 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page | add:-1 }}#pagtable">...</a>
+                </li>    
+                {% endif %}
+                {% if page < 7 or page == entity.number %}
+                <li class="page-item {% if page == entity.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ page }}#pagtable">{{ page }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            {% if entity.has_next %}
+                <li class="page-item d-none d-sm-block">
+                    <a class="page-link" href="?page={{ entity.next_page_number }}#pagtable">Siguiente</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="d-flex justify-content-center d-sm-none">            
+        {% if entity.has_previous %}
+            <span class="page-item"><a  class="page-link" href="?page={{ entity.previous_page_number }}#pagtable">Anterior</a></span>
+        {% endif %}
+        {% if entity.has_next %}
+            <span class="page-item"><a class="page-link" href="?page={{ entity.next_page_number }}#pagtable">Siguiente</a></span>
+        {% endif %}
+        <br>
+        <br>
+    </div>
+    {% endif %}
+	
+
+
 
 {% endblock %}
 
