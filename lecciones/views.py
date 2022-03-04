@@ -258,10 +258,10 @@ def leccion1(request):
 
 
 def tablero(request):
-    total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total').first()
+    total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
-    max=Usuario.objects.aggregate(Max('puntaje_total')).first()
+    max=Usuario.objects.aggregate(Max('puntaje_total'))
     puesto=[]
 
     try:
