@@ -263,6 +263,8 @@ def tablero(request):
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
     max=total_usaurios_quiz[0]
+    max_2=total_usaurios_quiz[1]
+    max_3=total_usaurios_quiz[2]
     
 
     try:
@@ -276,7 +278,9 @@ def tablero(request):
         'entity': total_usaurios_quiz,
         'contar_user': contador,
         'paginator': paginator,
-        'max':max
+        'max':max,
+        'max_2':max,
+        'max_3':max
     }
 
     return render(request, './lecciones/tablero.html', context)
