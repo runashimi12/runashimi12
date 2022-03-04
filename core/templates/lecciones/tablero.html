@@ -69,12 +69,12 @@
 {% block contenido %}
 
 <div class="container">
-
-	<h1 class="text-center my-4">
+	
+	<h1 class="text-center my-4"> 
 		<span class="badge badge-danger">
 
-			Tabla de posiciones. Nro de estudiantes {{contar_user}}
-
+			Tabla de posiciones. Nro de estudiantes {{contar_user}} 
+			
 		</span>
 	</h1>
 	<div class="border-0 shadow table-wrapper table-responsive ">
@@ -89,24 +89,14 @@
 			</thead>
 			<tbody>
 				{% for user_quiz in entity %}
-				<tr>
-					<th>{{forloop.counter}}</th>
-					<th>{{user_quiz.usuario.username}}</th>
-					<th>{{user_quiz.puntaje_total}}</th>
-					<th>
-						{% if user_quiz.puntaje_total == max(user_quiz.puntaje_total) %}
-						<i class="fad fa-trophy-alt"></i>
-						{% elif ser_quiz.puntaje_total == (m)ax(user_quiz.puntaje_total)-1) %}
-						<i class="fas fa-trophy-alt"></i>
-						{% elif ser_quiz.puntaje_total == (max(user_quiz.puntaje_total)-2) %}
-						<i class="far fa-trophy-alt"></i>
-						{% else %}
-						Sigue intentandolo
-
-						{% endif %}
-
-					</th>
-				</tr>
+					<tr>
+						<th>{{forloop.counter}}</th>
+						<th>{{user_quiz.usuario.username}}</th>
+						<th>{{user_quiz.puntaje_total}}</th>
+						<th>
+							
+						</th>
+					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
@@ -114,10 +104,10 @@
 			´{% include 'lecciones/paginator.html' %}
 		</div>
 	</div>
+	
 
 
-
-
+	
 
 </div>
 
