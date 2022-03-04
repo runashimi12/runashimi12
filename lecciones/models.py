@@ -19,7 +19,7 @@ class Pregunta(models.Model):
     max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5,  decimal_places=2, max_digits=6)
     leccion=models.CharField(max_length=255, null=True, default=1)
     def __str__(self):
-        return f'Pregunta: leccion: {self.leccion}, texto:  {self.texto}' 
+        return f'Leccion: {self.leccion}, Pregunta:  {self.texto}' 
   # respuesta_p=models.CharField(max_length=255, null=True)
     # estudiante=models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
 
@@ -90,7 +90,7 @@ class Usuario(models.Model):
         puntaje_total=self.puntaje_total
         return puntaje_total
     def __str__(self):
-        return f'Usuario: {self.id}, nombre {self.usuario}, puntaje total: {self.puntaje_total}' 
+        return f'Usuario: {self.id}, Nombre: {self.usuario}, Puntaje total: {self.puntaje_total}' 
    
 class PreguntaRespondida(models.Model):
     quizUser = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='intentos')
