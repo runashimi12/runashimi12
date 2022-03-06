@@ -262,9 +262,9 @@ def tablero(request):
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
-    max=total_usaurios_quiz[0]
-    max_2=total_usaurios_quiz[1]
-    max_3=total_usaurios_quiz[2]
+    # max=total_usaurios_quiz[0]
+    # max_2=total_usaurios_quiz[1]
+    # max_3=total_usaurios_quiz[2]
     
 
     try:
