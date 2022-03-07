@@ -259,12 +259,20 @@ def leccion1(request):
 
 
 def tablero(request):
+    max= 0
+    max_2= 0
+    max_3= 0
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
+    max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(0)))['puntaje_total']
+    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total')-5, Value(0)))['puntaje_total']
+    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total')-10, Value(0)))['puntaje_total']
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
-    # max=total_usaurios_quiz[0]
-    # max_2=total_usaurios_quiz[1]
-    # max_3=total_usaurios_quiz[2]
+    '''
+    revisar el tamaño del array diferente de 0, si es cero mostrar no hay datos
+    Si hay datos, procesar los que hayan. Si hay menos de tres, mostrar los que hayan
+    '''
+     
     
 
     try:
@@ -279,8 +287,8 @@ def tablero(request):
         'contar_user': contador,
         'paginator': paginator,
         'max':max,
-        'max_2':max,
-        'max_3':max
+        'max_1':max_1,
+        'max_2':max_2
     }
 
     return render(request, './lecciones/tablero.html', context)

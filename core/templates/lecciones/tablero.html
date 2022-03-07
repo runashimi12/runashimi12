@@ -84,7 +84,7 @@
 					<th><i class="fab fa-slack-hash"></i> Posicion</th>
 					<th><i class="fas fa-user"></i> Usuario</th>
 					<th><i class="fas fa-star-half-alt"></i> Puntaje</th>
-					<th><i class="fas fa-trophy"></i> Trofeos</th>
+					<th><i class="fas fa-trophy"></i> Premios</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -94,7 +94,14 @@
 						<th>{{user_quiz.usuario.username}}</th>
 						<th>{{user_quiz.puntaje_total}}</th>
 						<th>
-							{{max}} {{max_1}} {{max_2}}
+
+							{% if user_quiz.puntaje_total  == max%}							
+							<i class="fa-solid fa-trophy"></i>
+							{% elif user_quiz.puntaje_total  == max_1%}
+							<i class="fa-solid fa-medal"></i>							
+							{% elif user_quiz.puntaje_total  == max_2%}
+							<i class="fas fa-award"></i>							
+							{% endif %}
 						</th>
 					</tr>
 				{% endfor %}
