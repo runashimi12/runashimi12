@@ -259,9 +259,7 @@ def leccion1(request):
 
 
 def tablero(request):
-    max= 0
-    max_2= 0
-    max_3= 0
+    
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
     max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(0)))['puntaje_total']
     max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total')-5, Value(0)))['puntaje_total']
