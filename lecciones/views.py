@@ -1,4 +1,6 @@
+from decimal import Decimal
 import logging
+from django.forms import DecimalField, IntegerField
 from django.forms.models import modelform_factory
 from django.http.response import Http404
 from lecciones.models import Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
@@ -262,8 +264,8 @@ def tablero(request):
     
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
     max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(0)))['puntaje_total']
-    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total')-5, Value(0)))['puntaje_total']
-    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total')-10, Value(0)))['puntaje_total']
+    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(0)))['puntaje_total']
+    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(0)))['puntaje_total']
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
     '''
