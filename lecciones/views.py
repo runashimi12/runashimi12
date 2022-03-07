@@ -263,9 +263,9 @@ def leccion1(request):
 def tablero(request):
     
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
-    max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(0)))['puntaje_total']
-    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(0)))['puntaje_total']
-    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(0)))['puntaje_total']
+    max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(Decimal(0))))['puntaje_total']
+    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(Decimal(0))))['puntaje_total']
+    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(Decimal(0))))['puntaje_total']
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
     '''
