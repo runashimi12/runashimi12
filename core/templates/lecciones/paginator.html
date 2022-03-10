@@ -21,9 +21,9 @@
                 </li>    
                 {% endif %}
                 {% if page < 7 or page == entity.number %}
-                <li class="page-item {% if page == entity.number %}active{% endif %}" style="background-color: var(--bs-gray-900);
-                border-color: var(--bs-gray-900);">
-                    <a class="page-link" href="?page={{ page }}#pagtable">{{ page }}</a>
+                <li class="page-item {% if page == entity.number %}active{% endif %}" >
+                    <a class="page-link" style="background-color: var(--bs-gray-900);
+                    border-color: var(--bs-gray-900); color:white" href="?page={{ page }}#pagtable">{{ page }}</a>
                 </li>
                 {% endif %}
             {% endfor %}

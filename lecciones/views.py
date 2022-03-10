@@ -840,7 +840,9 @@ def leccion4_2(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')        
+        pregunta_pk = request.POST.get('pregunta_pk')  
+        logging.basicConfig(level=logging.NOTSET)  # He
+      
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -877,7 +879,8 @@ def leccion4_3(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')        
+        pregunta_pk = request.POST.get('pregunta_pk')  
+        logging.basicConfig(level=logging.NOTSET)      
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -922,7 +925,8 @@ def leccion5_1(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')        
+        pregunta_pk = request.POST.get('pregunta_pk')      
+        logging.basicConfig(level=logging.NOTSET)  
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -960,7 +964,7 @@ def leccion5_2(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -998,7 +1002,7 @@ def leccion5_3(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1037,7 +1041,7 @@ def leccion5_4(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1084,7 +1088,7 @@ def leccion6_1(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1123,7 +1127,7 @@ def leccion6_2(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1162,7 +1166,7 @@ def leccion6_3(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1208,7 +1212,7 @@ def leccion7_1(request):
 
     if request.method == 'POST':
         pregunta_pk = request.POST.get('pregunta_pk')
-        
+        logging.basicConfig(level=logging.NOTSET)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1246,7 +1250,8 @@ def leccion7_2(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')        
+        pregunta_pk = request.POST.get('pregunta_pk')   
+        logging.basicConfig(level=logging.NOTSET)     
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
@@ -1284,7 +1289,8 @@ def leccion7_3(request):
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')        
+        pregunta_pk = request.POST.get('pregunta_pk')     
+        logging.basicConfig(level=logging.NOTSET)   
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         # pregunta_respondida
