@@ -38,7 +38,8 @@ urlpatterns = [
 
     #tablero
     path('tablero/', tablero, name='tablero'),
-    path('resultado/(?P<int:pregunta_respondida_pk>\d+)/(?P<puntaje_total>\d+)', resultado_pregunta, name='resultado'),
+    #path('resultado/(?P<int:pregunta_respondida_pk>\d+)/(?P<puntaje_total>\d+)', resultado_pregunta, name='resultado'),
+    path(r'^resultado/(?P<pregunta_respondida_pk>)/puntaje_total', resultado_pregunta, name='resultado'),
 
 
     path("leccion1/", leccion1, name="leccion1"),

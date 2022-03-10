@@ -855,7 +855,8 @@ def leccion4_2(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -893,7 +894,8 @@ def leccion4_3(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -939,7 +941,8 @@ def leccion5_1(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -977,7 +980,8 @@ def leccion5_2(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1016,7 +1020,8 @@ def leccion5_3(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1055,7 +1060,8 @@ def leccion5_4(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1102,7 +1108,8 @@ def leccion6_1(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1141,7 +1148,8 @@ def leccion6_2(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1180,7 +1188,8 @@ def leccion6_3(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1226,7 +1235,8 @@ def leccion7_1(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1265,7 +1275,8 @@ def leccion7_2(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
@@ -1303,7 +1314,8 @@ def leccion7_3(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        return redirect('resultado', pregunta_respondida.pk)
+        puntaje_total=QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk,puntaje_total)
     else:
         try:
             # pregunta=Pregunta.objects.filter(leccion=id).get()
