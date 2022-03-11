@@ -1,4 +1,4 @@
-from lecciones.models import  Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
+from lecciones.models import  Grupo, Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.contrib import admin
 from .form import ELegirInlineFormset
 
@@ -23,8 +23,15 @@ class PreguntasRespondidasAdmin(admin.ModelAdmin):
     class Meta:
         model= PreguntaRespondida
 
+
+
+
+
+
+
 admin.site.register(PreguntaRespondida)
 admin.site.register(Pregunta, PreguntaAdmin);
 admin.site.register(ElegirRespuesta);
 admin.site.register(Usuario);
 admin.site.register(Rol);
+admin.site.register(Grupo);

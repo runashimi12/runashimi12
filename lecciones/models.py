@@ -11,7 +11,10 @@ class Rol(models.Model):
     def __str__(self):
         return f'Rol {self.id}: {self.nombre}'
 
-
+class Grupo(models.Model):
+    nombre=models.CharField(max_length=255)
+    def __str__(self):
+        return f'Grupo {self.id}: {self.nombre}'
 
 class Pregunta(models.Model):
     NUMER_DE_RESPUESTAS_PERMITIDAS = 1
