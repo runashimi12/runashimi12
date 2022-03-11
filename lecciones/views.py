@@ -267,13 +267,7 @@ def tablero(request):
     max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(Decimal(0))))['puntaje_total']
     max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(Decimal(0))))['puntaje_total']
     contador = total_usaurios_quiz.count()
-    page = request.GET.get('page', 1)
-    '''
-    revisar el tamaño del array diferente de 0, si es cero mostrar no hay datos
-    Si hay datos, procesar los que hayan. Si hay menos de tres, mostrar los que hayan
-    '''
-     
-    
+    page = request.GET.get('page', 1)     
 
     try:
         paginator= Paginator(total_usaurios_quiz, 10)

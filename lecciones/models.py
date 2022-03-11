@@ -1,20 +1,23 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 import random
 
 import logging
 
 # Create your models here.
 
-class Rol(models.Model):
-    nombre=models.CharField(max_length=255)
-    def __str__(self):
-        return f'Rol {self.id}: {self.nombre}'
-
+ 
 class Grupo(models.Model):
-    nombre=models.CharField(max_length=255)
+    nombre=models.CharField(max_length=255, null=True)
     def __str__(self):
-        return f'Grupo {self.id}: {self.nombre}'
+        return f'Grupo: {self.id}: {self.nombre}'
+
+class Rol(models.Model):
+    nombre=models.CharField(max_length=255,null=True)
+    def __str__(self):
+        return f'Rol: {self.id}: {self.nombre}'
+
+
 
 class Pregunta(models.Model):
     NUMER_DE_RESPUESTAS_PERMITIDAS = 1
@@ -22,7 +25,7 @@ class Pregunta(models.Model):
     max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5,  decimal_places=2, max_digits=6)
     leccion=models.CharField(max_length=255, null=True, default=1)
     def __str__(self):
-        return f'Leccion: {self.leccion}, texto:  {self.texto}' 
+        return f'P:  {self.texto}' 
   # respuesta_p=models.CharField(max_length=255, null=True)
     # estudiante=models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
 
@@ -41,6 +44,7 @@ class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
     puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
+    grupo = models.ForeignKey(Grupo, null=True, on_delete=models.CASCADE)
  
  
     def crear_intentos(self, pregunta):
@@ -93,7 +97,7 @@ class Usuario(models.Model):
         puntaje_total=self.puntaje_total
         return puntaje_total
     def __str__(self):
-        return f'Usuario: {self.id}, Nombre: {self.usuario}, Puntaje total: {self.puntaje_total}' 
+        return f'ID: {self.id}, Nombre: {self.usuario}' 
    
 class PreguntaRespondida(models.Model):
     quizUser = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='intentos')
