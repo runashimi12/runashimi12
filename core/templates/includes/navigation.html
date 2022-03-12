@@ -138,10 +138,12 @@
                         </div>
                       </a>
                       <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                        <a class="dropdown-item d-flex align-items-center" href="https://runashimifup.herokuapp.com/admin">
+                        {% if user.is_superuser  %}
+                        <a class="dropdown-item d-flex align-items-center" href="{% url 'admin:index' %}">
                           <i class="fas fa-cog"></i>
                           Configuraciones
                         </a>
+                        {% endif %}
                         <a class="dropdown-item d-flex align-items-center" href="{% url 'tablero' %} ">
                           <i class="fas fa-trophy dropdown-icon" fill="none" viewBox="0 0 24 24"></i> Tablero
                         </a>
