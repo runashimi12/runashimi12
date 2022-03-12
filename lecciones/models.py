@@ -44,7 +44,7 @@ class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
     puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
-    grupo = models.ForeignKey(Grupo, null=True, on_delete=models.CASCADE)
+    # grupo = models.ForeignKey(Grupo, null=True, on_delete=models.CASCADE)
  
  
     def crear_intentos(self, pregunta):
