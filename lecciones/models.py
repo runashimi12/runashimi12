@@ -7,7 +7,7 @@ import logging
 # Create your models here.
 
  
-class Grupo(models.Model):
+class GrupoClase(models.Model):
     nombre=models.CharField(max_length=255, null=True)
     def __str__(self):
         return f'Grupo: {self.id}: {self.nombre}'
@@ -44,7 +44,7 @@ class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
     puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
-    # grupo = models.ForeignKey(Grupo, null=True, on_delete=models.CASCADE)
+    #grupo = models.ForeignKey(GrupoClass, blank=True, on_delete=models.SET_NULL, null=True)
  
  
     def crear_intentos(self, pregunta):

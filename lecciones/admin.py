@@ -1,4 +1,4 @@
-from lecciones.models import  Grupo, Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
+from lecciones.models import  GrupoClass, Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
@@ -42,5 +42,5 @@ admin.site.register(PreguntaRespondida, PreguntasRespondidasAdmin)
 admin.site.register(Pregunta, PreguntaAdmin);
 admin.site.register(ElegirRespuesta, ElegirRespuestaAdmin);
 admin.site.register(Usuario, UsuarioAdmin);
-admin.site.register(Grupo);
+admin.site.register(GrupoClass);
 admin.site.register(Rol);
