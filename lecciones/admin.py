@@ -1,9 +1,12 @@
 from lecciones.models import  GrupoClase, Pregunta, ElegirRespuesta, PreguntaRespondida, Rol, Usuario
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin 
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+
 
 from .form import ELegirInlineFormset
-
+#User = get_user_model()
 # Register your models here.
 
 class ElegirRespuestaInline(admin.TabularInline):    
@@ -22,7 +25,8 @@ class PreguntaAdmin(admin.ModelAdmin):
     
 
 class PreguntasRespondidasAdmin(admin.ModelAdmin):   
-    list_display = ['quizUser', 'pregunta', 'respuesta', 'correcta', 'puntaje_obtenido']    
+    list_display = ['quizUser', 'pregunta', 'respuesta', 'correcta', 'puntaje_obtenido'] 
+    search_fields=['quizUser__usuario__username']   
     class Meta:
         model= PreguntaRespondida
 
@@ -38,9 +42,21 @@ class ElegirRespuestaAdmin(admin.ModelAdmin):
 
 
 
+# @admin.register(User)
+# class CustomUserAdmin(UserAdmin):
+#     fieldsets = UserAdmin.fieldsets + (
+#         ('GrupoClase', {'fields': ('grupoClase',)}),
+#     )
+
+#     add_fieldsets = UserAdmin.add_fieldsets + (
+#         (None, {'fields': ('grupoClase',)}),
+#    )
+
+
 admin.site.register(PreguntaRespondida, PreguntasRespondidasAdmin)
 admin.site.register(Pregunta, PreguntaAdmin);
 admin.site.register(ElegirRespuesta, ElegirRespuestaAdmin);
 admin.site.register(Usuario, UsuarioAdmin);
 admin.site.register(GrupoClase);
 admin.site.register(Rol);
+# admin.site.register(User, CustomUserAdmin)

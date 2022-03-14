@@ -1,5 +1,8 @@
+from pyexpat import model
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.forms import UserCreationForm
 import random
 
 import logging
@@ -10,7 +13,30 @@ import logging
 class GrupoClase(models.Model):
     nombre=models.CharField(max_length=255, null=True)
     def __str__(self):
-        return f'Grupo: {self.id}: {self.nombre}'
+        return f'GrupoClase: {self.id}: {self.nombre}'
+
+class GrupoDefault(models.Model):
+    grupodefault = GrupoClase(id=1, nombre='sinGrupo')
+    grupodefault.save()
+
+# class User(AbstractUser):
+#     ROLE_CHOICES = (
+#         ('sinGrupo', 'sinGrupo'),
+#         ('grupoA', 'grupoA'),
+#     ) 
+#     grupoClase = models.CharField(max_length = 50, choices = ROLE_CHOICES)
+
+
+#     def get_grupoclase(self):
+#         return getattr(self, self.grupoClase, None)
+#     class Meta:
+#         app_label='lecciones'
+
+
+# class CustomUserCreationForm(UserCreationForm):
+#     class Meta(UserCreationForm.Meta):
+#         model= User
+#         fields= UserCreationForm.Meta.fields+('grupoClase',)
 
 class Rol(models.Model):
     nombre=models.CharField(max_length=255,null=True)
@@ -44,7 +70,7 @@ class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
     puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
-    #grupo = models.ForeignKey(GrupoClass, blank=True, on_delete=models.SET_NULL, null=True)
+    #grupo = models.ForeignKey(GrupoClase, blank=True, on_delete=models.SET_NULL, null=True)
  
  
     def crear_intentos(self, pregunta):

@@ -8,7 +8,7 @@ from django.contrib import admin
 
 urlpatterns = [
     #admins 
-    path('admin/', admin.site.urls, name= 'admin'),
+    path('admin/', admin.site.urls),
     path("curso/", curso, name="curso" ),
     # respuesta
     path("list_rta/", list_rta, name="list_rta" ),

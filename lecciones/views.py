@@ -1,5 +1,8 @@
+from datetime import datetime
 from decimal import Decimal
 import logging
+import os
+import time
 from django.forms import DecimalField, IntegerField
 from django.forms.models import modelform_factory
 from django.http.response import Http404
@@ -267,7 +270,8 @@ def tablero(request):
     max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(Decimal(0))))['puntaje_total']
     max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(Decimal(0))))['puntaje_total']
     contador = total_usaurios_quiz.count()
-    page = request.GET.get('page', 1)     
+    page = request.GET.get('page', 1)
+     
 
     try:
         paginator= Paginator(total_usaurios_quiz, 10)
@@ -292,24 +296,19 @@ def tablero(request):
 def leccion1_1(request):
     id = 1
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+    contador=5
+    hora=datetime.now().strftime("%H:%M:%S")
+    logging.basicConfig(level=logging.NOTSET)  # He
 
     if request.method == 'POST':
-        pregunta_pk = request.POST.get('pregunta_pk')
-        logging.basicConfig(level=logging.NOTSET)  # He
-
-        #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
-        # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
-        #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
+        logging.debug("**************6*****************Log mpregunta_pk.", contador)
+        pregunta_pk = request.POST.get('pregunta_pk')   
+        logging.debug("**************7*****************Log mpregunta_pk.", contador)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
+        
         # pregunta_respondida
         respuesta_pk = request.POST.get('respuesta_pk')
-        logging.debug(
-            "*******************************Log pregunta_respondida.", pregunta_respondida)
-        logging.debug(
-            "*******************************Log respuesta_pk.", respuesta_pk)
         try:
             opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
                 pk=respuesta_pk)
@@ -319,6 +318,7 @@ def leccion1_1(request):
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
         puntaje_total = QuizUser.obtener_puntaje()
+        
 
         return redirect('resultado', pregunta_respondida.pk, puntaje_total)
 
@@ -328,18 +328,18 @@ def leccion1_1(request):
             pregunta = QuizUser.obtener_nuevas_preguntas(id)
             if pregunta is not None:
                 QuizUser.crear_intentos(pregunta)
+            
 
             context = {
-                'pregunta': pregunta
+                'pregunta': pregunta,
+                'contador': contador,
+                'hora': hora
 
             }
         except ObjectDoesNotExist:
             #raise Http404
             return redirect('curso')
 
-        # pregunta=Pregunta.objects.get(leccion=id)
-        #pregunta = QuizUser.obtener_nuevas_preguntas(id)
-        #pregunta= Pregunta.objects.filter(leccion=id).get()
 
     return render(request, "./lecciones/leccion1.1.html", context)
  # if pregunta is not None:
