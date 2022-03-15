@@ -6,6 +6,90 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<style>
+    :root {
+            --w: calc(70vw / 6);
+            --h: calc(70vh / 4);
+        }
+
+        * {
+            transition: all 0.5s;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            -webkit-perspective: 1000;
+            background: powderblue;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: calibri;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        .area-tarjeta,
+        .tarjeta,
+        .cara {
+            cursor: pointer;
+            width: var(--w);
+            min-width: 100px;
+            height: var(--h);
+        }
+
+        .tarjeta {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: iniciar 5s;
+        }
+
+        .cara {
+            position: absolute;
+            backface-visibility: hidden;
+            box-shadow: inset 0 0 0 5px white;
+            font-size: 500%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .trasera {
+            background-color: white;
+            transform: rotateY(180deg);
+        }
+
+        .superior {
+            background: linear-gradient(orange, darkorange);
+        }
+
+        .nuevo-juego {
+            cursor: pointer;
+            background: linear-gradient(orange, darkorange);
+            padding: 20px;
+            border-radius: 50px;
+            border: white 5px solid;
+            font-size: 130%;
+        }
+
+        @keyframes iniciar {
+
+            20%,
+            90% {
+                transform: rotateY(180deg);
+            }
+
+            0%,
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+</style>
 
 <div class="py-4">
     <div class="dropdown">
@@ -99,97 +183,8 @@
                     <p class="lead px-lg-8">Juego de Memoria</p>
                 </div>
             </div>
-            <div class="body">
-                <!-- CSS EFECTOS VISUALES-->
-                 <!-- CSS -->
-    <!-- efectos visuales -->
-    <style>
-        :root {
-            --w: calc(70vw / 6);
-            --h: calc(70vh / 4);
-        }
-
-        * {
-            transition: all 0.5s;
-        }
-
-        body {
-            padding: 0;
-            margin: 0;
-            /* -webkit-perspective: 1000; */
-            background: powderblue;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-family: calibri;
-        }
-
-        div {
-            display: inline-block;
-        }
-
-        .area-tarjeta,
-        .tarjeta,
-        .cara {
-            cursor: pointer;
-            width: var(--w);
-            min-width: 100px;
-            height: var(--h);
-        }
-
-        .tarjeta {
-            position: relative;
-            transform-style: preserve-3d;
-            animation: iniciar 5s;
-        }
-
-        .cara {
-            position: absolute;
-            backface-visibility: hidden;
-            box-shadow: inset 0 0 0 5px white;
-            font-size: 500%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .trasera {
-            background-color: lightcyan;
-            transform: rotateY(180deg);
-        }
-
-        .superior {
-            background: line
-              ar-gradient(orange, darkorange);
-        }
-
-        .nuevo-juego {
-            cursor: pointer;
-            background: linear-gradient(orange, darkorange);
-            padding: 20px;
-            border-radius: 50px;
-            border: white 5px solid;
-            font-size: 130%;
-        }
-
-        @keyframes iniciar {
-
-            20%,
-            90% {
-                transform: rotateY(180deg);
-            }
-
-            0%,
-            100% {
-                transform: rotateY(0deg);
-            }
-        }
-    </style>
-
-    <!-- HTML -->
+          
+               <!-- HTML -->
     <!-- estructura visual -->
 
     <div id="tablero">
@@ -201,7 +196,6 @@
         Nuevo Juego
     </div>
 
-    
 
 
 
@@ -212,7 +206,7 @@
 
 
 
-        </div>
+       
     </section>
 
 
@@ -222,44 +216,41 @@
 </div>
 
 <!-- JS -->
-    <!-- parte lógica -->
-    <script>
+<!-- parte lógica -->
+<script >
 
-        let iconos = []
+let iconos = []
         let selecciones = []
 
         generarTablero()
 
         function cargarIconos() {
             iconos = [
-                '<img src="/static/assets/img/leccion7/burro.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/caballo.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/gato.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/pollito.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/aguila.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/Lobo.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/picaflor.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/conejo.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/perro.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/buho.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/oveja.jpg" width="50%">',
-                '<img src="/static/assets/img/leccion7/sapo.jpg" width="50%">',
+            '<img src="/static/assets/img/leccion7/burro.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/caballo.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/gato.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/pollito.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/aguila.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/Lobo.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/picaflor.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/conejo.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/perro.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/buho.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/oveja.jpg" width="50%">',
+        '<img src="/static/assets/img/leccion7/sapo.jpg" width="50%">',
             ]
         }
 
         function generarTablero() {
             cargarIconos()
-            let len = iconos.length
             selecciones = []
             let tablero = document.getElementById("tablero")
             let tarjetas = []
-               // ${iconos[0]} 
-            for (let i = 0; i < len*2; i++) {
+            for (let i = 0; i < 24; i++) {
                 tarjetas.push(`
                 <div class="area-tarjeta" onclick="seleccionarTarjeta(${i})">
                     <div class="tarjeta" id="tarjeta${i}">
-                        <div class="cara trasera" s>
-                         
+                        <div class="cara trasera" id="trasera${i}">
                             ${iconos[0]}
                         </div>
                         <div class="cara superior">
