@@ -116,7 +116,7 @@
         body {
             padding: 0;
             margin: 0;
-            -webkit-perspective: 1000;
+            /* -webkit-perspective: 1000; */
             background: powderblue;
             min-height: 100vh;
             display: flex;
@@ -201,7 +201,27 @@
         Nuevo Juego
     </div>
 
-    <!-- JS -->
+    
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+
+
+
+    <!--fin-->
+
+</div>
+
+<!-- JS -->
     <!-- parte lógica -->
     <script>
 
@@ -212,18 +232,18 @@
 
         function cargarIconos() {
             iconos = [
-                '<img src="/static/assets/img/leccion7/burro.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/caballo.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/gato.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/pollito.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/aguila.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/Lobo.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/picaflor.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion5/cucaracha.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/perro.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/buho.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/oveja.jpg" width="100%">',
-                '<img src="/static/assets/img/leccion7/sapo.jpg" width="100%">',
+                '<img src="/static/assets/img/leccion7/burro.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/caballo.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/gato.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/pollito.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/aguila.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/Lobo.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/picaflor.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/conejo.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/perro.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/buho.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/oveja.jpg" width="50%">',
+                '<img src="/static/assets/img/leccion7/sapo.jpg" width="50%">',
             ]
         }
 
@@ -289,26 +309,6 @@
 
 
 
-            </div>
-
-
-
-
-
-        </div>
-    </section>
-
-
-
-    <!--fin-->
-
-</div>
-
-
-
-
-
-
 
 
 
@@ -316,4 +316,6 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+
+{% endblock javascripts %}
