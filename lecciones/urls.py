@@ -77,4 +77,5 @@ urlpatterns = [
     path("leccion7.1/", leccion7_1, name="leccion7_1"),
     path("leccion7.2/", leccion7_2, name="leccion7_2"),
     path("leccion7.3/", leccion7_3, name="leccion7_3"),
+    path("leccion8/", leccion8, name="leccion8"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

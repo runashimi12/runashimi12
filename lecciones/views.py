@@ -1326,3 +1326,8 @@ def leccion7_3(request):
             return redirect('curso')
     return render(request, "./lecciones/leccion7.3.html", context)
 # FIN leccion 7
+
+# INICIO leccion 8
+@login_required(login_url="/login/")
+def leccion8(request): 
+    return render(request, "./lecciones/leccion8.html")
