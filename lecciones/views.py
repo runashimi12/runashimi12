@@ -12,6 +12,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.db.models import Max, Value
 from django.db.models.functions import Coalesce
+from django.db.models import Sum
+
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -351,23 +353,42 @@ def leccion1_1(request):
 
 
 def resultado_pregunta(request, pregunta_respondida_pk, puntaje_total):
-
-   
+    maximo_puntaje_total=0
+    pregunta=0
+    logging.basicConfig(level=logging.NOTSET)  # He
     respondida = get_object_or_404(PreguntaRespondida, pk=pregunta_respondida_pk)
+    preguntas= Pregunta.objects.all().aggregate(nro=Sum('max_puntaje')) #sale un diccionario {a:5}
+    for i in preguntas:
+         logging.debug("**************max clave*****************", i)
+         maximo_puntaje_total=preguntas[i]
+
+    
+
+    logging.debug("**************max valor*****************", maximo_puntaje_total)
+    nro_preguntas=Pregunta.objects.count()
+    porcentaje=0
     if puntaje_total == 'None':
-        puntaje_totall=0       
+        puntaje_totall=0  
+        porcentaje=0     
 
     else:
         
-        puntaje_totall=round(((float(puntaje_total)*100)/45),2)
+        puntaje_totall=float(maximo_puntaje_total)
+        porcentaje=int(round(((float(puntaje_total)*100)/puntaje_totall),0))
+        
         
 
     context = {
         'respondida': respondida,
-        'puntaje_total':puntaje_totall
+        'puntaje_total':puntaje_totall,
+        'porcentaje': porcentaje,
+        
     }
     return render(request, './lecciones/resultados.html', context)
 
+no_respuesta = ElegirRespuesta.objects.count()
+    # hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+respuestas = ElegirRespuesta.objects.all()
 
 @login_required(login_url="/login/")
 def leccion1_2(request):
