@@ -288,15 +288,6 @@ def tablero(request):
             max_2=0
 
 
-    # try:
-        
-    #     max_1= total_usaurios_quiz[2].puntaje_total
-    #     max_2= total_usaurios_quiz[3].puntaje_total
-    # except IndexError:
-    #     max=0
-    #     max_1=0
-    #     max_2=0
-    logging.debug("**************7*****************", max)
 
     try:
         paginator= Paginator(total_usaurios_quiz, 10)
