@@ -266,14 +266,37 @@ def leccion1(request):
 
 
 def tablero(request):
-    
+    logging.basicConfig(level=logging.NOTSET)  # He 
+    max=0
+    max_1=0
+    max_2=0   
     total_usaurios_quiz = Usuario.objects.order_by('-puntaje_total')
-    max= total_usaurios_quiz.aggregate(puntaje_total=Coalesce(Max('puntaje_total'), Value(Decimal(0))))['puntaje_total']
-    max_1= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(5)), Value(Decimal(0))))['puntaje_total']
-    max_2= total_usaurios_quiz.aggregate(puntaje_total=Coalesce((Max('puntaje_total')-Decimal(10)), Value(Decimal(0))))['puntaje_total']
+    
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
-     
+
+    for i in range(0, len(total_usaurios_quiz)):
+        if i==0:
+            max= total_usaurios_quiz[0].puntaje_total
+        elif i==1:
+            max_1= total_usaurios_quiz[1].puntaje_total
+        elif i==2:
+            max_2= total_usaurios_quiz[2].puntaje_total
+        else:
+            max=0
+            max_1=0
+            max_2=0
+
+
+    # try:
+        
+    #     max_1= total_usaurios_quiz[2].puntaje_total
+    #     max_2= total_usaurios_quiz[3].puntaje_total
+    # except IndexError:
+    #     max=0
+    #     max_1=0
+    #     max_2=0
+    logging.debug("**************7*****************", max)
 
     try:
         paginator= Paginator(total_usaurios_quiz, 10)
@@ -299,13 +322,11 @@ def leccion1_1(request):
     id = 1
     QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
     contador=5
-    hora=datetime.now().strftime("%H:%M:%S")
-    logging.basicConfig(level=logging.NOTSET)  # He
+    hora=datetime.now().strftime("%H:%M:%S")    
 
     if request.method == 'POST':
-        logging.debug("**************6*****************Log mpregunta_pk.", contador)
-        pregunta_pk = request.POST.get('pregunta_pk')   
-        logging.debug("**************7*****************Log mpregunta_pk.", contador)
+        pregunta_pk = request.POST.get('pregunta_pk')  
+        
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
         
@@ -319,8 +340,7 @@ def leccion1_1(request):
             raise Http404
 
         QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
-        puntaje_total = QuizUser.obtener_puntaje()
-        
+        puntaje_total = QuizUser.obtener_puntaje()        
 
         return redirect('resultado', pregunta_respondida.pk, puntaje_total)
 
@@ -329,8 +349,7 @@ def leccion1_1(request):
             # pregunta=Pregunta.objects.filter(leccion=id).get()
             pregunta = QuizUser.obtener_nuevas_preguntas(id)
             if pregunta is not None:
-                QuizUser.crear_intentos(pregunta)
-            
+                QuizUser.crear_intentos(pregunta)            
 
             context = {
                 'pregunta': pregunta,
@@ -355,28 +374,23 @@ def leccion1_1(request):
 def resultado_pregunta(request, pregunta_respondida_pk, puntaje_total):
     maximo_puntaje_total=0
     pregunta=0
-    logging.basicConfig(level=logging.NOTSET)  # He
     respondida = get_object_or_404(PreguntaRespondida, pk=pregunta_respondida_pk)
     preguntas= Pregunta.objects.all().aggregate(nro=Sum('max_puntaje')) #sale un diccionario {a:5}
-    for i in preguntas:
-         logging.debug("**************max clave*****************", i)
+    no_respuesta = ElegirRespuesta.objects.count()
+    # hacemos un query para recuperar todos los objetos de tipo Persona en la BD
+    # respuestas = ElegirRespuesta.objects.all()
+    for i in preguntas:         
          maximo_puntaje_total=preguntas[i]
 
-    
-
-    logging.debug("**************max valor*****************", maximo_puntaje_total)
     nro_preguntas=Pregunta.objects.count()
     porcentaje=0
     if puntaje_total == 'None':
         puntaje_totall=0  
         porcentaje=0     
 
-    else:
-        
+    else:        
         puntaje_totall=float(maximo_puntaje_total)
         porcentaje=int(round(((float(puntaje_total)*100)/puntaje_totall),0))
-        
-        
 
     context = {
         'respondida': respondida,
@@ -386,9 +400,7 @@ def resultado_pregunta(request, pregunta_respondida_pk, puntaje_total):
     }
     return render(request, './lecciones/resultados.html', context)
 
-no_respuesta = ElegirRespuesta.objects.count()
-    # hacemos un query para recuperar todos los objetos de tipo Persona en la BD
-respuestas = ElegirRespuesta.objects.all()
+
 
 @login_required(login_url="/login/")
 def leccion1_2(request):
