@@ -96,11 +96,11 @@
 						<th>
 
 							{% if user_quiz.puntaje_total  == max%}							
-							<i class="fa-solid fa-trophy"></i>
+							<img src="/static/assets/img/trofeos/oro.png" width="30px">
 							{% elif user_quiz.puntaje_total  == max_1%}
-							<i class="fa-solid fa-medal"></i>							
+							<img src="/static/assets/img/trofeos/plata.png" width="30px">							
 							{% elif user_quiz.puntaje_total  == max_2%}
-							<i class="fas fa-award"></i>							
+							<img src="/static/assets/img/trofeos/bronce.png" width="30px">						
 							{% endif %}
 						</th>
 					</tr>
@@ -116,6 +116,13 @@
 
 	
 
+</div>
+<div style="color: #000; font-size: 10px">
+	<a href="https://www.flaticon.es/iconos-gratis/medalla-de-oro" title="medalla de oro iconos">Medalla de oro iconos creados por Freepik - Flaticon</a>
+	<br>
+	<a href="https://www.flaticon.es/iconos-gratis/medalla-de-plata" title="medalla de plata iconos">Medalla de plata iconos creados por Freepik - Flaticon</a>
+	<br>
+	<a href="https://www.flaticon.es/iconos-gratis/medalla-de-bronce" title="medalla de bronce iconos">Medalla de bronce iconos creados por Freepik - Flaticon</a>
 </div>
 
 {% endblock %}
