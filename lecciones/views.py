@@ -275,17 +275,20 @@ def tablero(request):
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
 
-    if len(total_usaurios_quiz) >= 1:
+    if len(total_usaurios_quiz) == 1:
         max = total_usaurios_quiz[0].puntaje_total
-    elif len(total_usaurios_quiz) >= (2):
+        max_1 = 0
+        max_2 = 0
+    elif len(total_usaurios_quiz) == (2):
+        max = total_usaurios_quiz[0].puntaje_total
         max_1 = total_usaurios_quiz[1].puntaje_total
-    elif len(total_usaurios_quiz) >= (3):
+        max_2 = 0
+    elif len(total_usaurios_quiz) == (3):
+        max= total_usaurios_quiz[0].puntaje_total
+        max_1 = total_usaurios_quiz[1].puntaje_total
         max_2 = total_usaurios_quiz[2].puntaje_total
-    else:
-            max = 0
-            max_1 = 0
-            max_2 = 0
-        
+    
+    
 
     try:
         paginator = Paginator(total_usaurios_quiz, 10)
