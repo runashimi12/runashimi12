@@ -124,6 +124,8 @@ class Usuario(models.Model):
         return puntaje_total
     def __str__(self):
         return f'ID: {self.id}, Nombre: {self.usuario}' 
+    # class Meta:
+    #     ordering = ["-puntaje_total"]
    
 class PreguntaRespondida(models.Model):
     quizUser = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='intentos')
