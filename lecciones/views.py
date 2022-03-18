@@ -283,7 +283,7 @@ def tablero(request):
         max = total_usaurios_quiz[0].puntaje_total
         max_1 = total_usaurios_quiz[1].puntaje_total
         max_2 = 0
-    elif len(total_usaurios_quiz) == (3):
+    elif len(total_usaurios_quiz) >= (3):
         max= total_usaurios_quiz[0].puntaje_total
         max_1 = total_usaurios_quiz[1].puntaje_total
         max_2 = total_usaurios_quiz[2].puntaje_total
