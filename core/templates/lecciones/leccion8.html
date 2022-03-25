@@ -194,9 +194,13 @@
 
                 <br>
 
-                <div class="nuevo-juego" onclick="generarTablero()">
+                <div class="nuevo-juego"  onclick="generarTablero()">
                     Nuevo Juego
                 </div>
+                <!-- <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-block btn-gray-800 mb-3 btn-success" data-bs-toggle="modal"
+                    data-bs-target="#modal-form"><i class="fas fa-gamepad"></i> Practicar ahora</button></div>
+                </div> -->
 
             </div>
 
@@ -212,10 +216,17 @@
 
 <!-- JS -->
 <!-- parte lógica -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!-- jQuery -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- Bootstrap -->
 <script>
 
     let iconos = []
     let selecciones = []
+    this.foundairs=0
+    var myModal = new bootstrap.Modal(document.getElementById('modal-form'), {
+  keyboard: false
+})
+    
 
     generarTablero()
 
@@ -234,7 +245,11 @@
             '<img src="/static/assets/img/leccion7/oveja.jpg" width="60%">',
             '<img src="/static/assets/img/leccion7/sapo.jpg" width="60%">',
         ]
+        this.maxPairNumber=iconos.length;
+        
     }
+    
+
 
     function generarTablero() {
         cargarIconos()
@@ -286,6 +301,20 @@
             } else {
                 trasera1.style.background = "white"
                 trasera2.style.background = "white"
+                this.foundairs++               
+                
+                if(this.maxPairNumber==this.foundairs){
+                    $("#modal-form").modal("show");
+                 setTimeout(()=>{
+                    document.myform.submit()
+                 }, 3000);
+                
+                
+                                 
+                    
+                    
+                    generarTablero()
+                }
             }
         }, 1000);
     }
@@ -294,7 +323,73 @@
 
 
 
+<!-- Modal Content -->
+<div class="modal fade" id="modal-form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body p-0">
+				<div class="card p-3 p-lg-4">
+					<button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+					<div class="text-center text-md-center mb-4 mt-md-0">
+					
+					</div>
+					{% block contenido %}
 
+					{% if pregunta is None %}
+
+					<div class="container">
+						<div class="jumbotron my-4">
+							<h1>Felicitaciones, ya has respondido la pregunta.  Mira el tablero de posiciones</h1>
+							
+							<a href="{% url 'tablero' %}">Ver Aqui</a>
+						</div>
+					</div>
+
+					{% else %}
+					<div class="container">
+						<div classs="jumbotron my-4">
+							<h3>
+								<!-- {{pregunta.texto}}  -->
+                                <br>
+                                Felicitaciones, terminó la última lección
+							</h3>
+
+							<form name="myform" method="POST" class="form">
+								{% csrf_token %}
+								<input type="hidden" name="pregunta_pk" value="{{pregunta.pk}}">
+								{% for opciones in pregunta.opciones.all %}
+                                {% if opciones.correcta %}
+
+                                
+                                <div class="form-check mx-4">
+									<input class="form-check-input" type="hidden" name="respuesta_pk" value="{{opciones.pk}}" id="choice-{{forloop.counter}}">
+									
+								</div>
+
+                                {% endif %}                               
+								
+								{% endfor %}
+								<!-- <button type="submit" class="btn btn-success">
+									Enviar </button> -->
+							</form>
+						</div>
+					</div>
+
+					{% endif %}
+
+
+
+					{% endblock %}
+					<div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End of Modal Content -->
 
 
 

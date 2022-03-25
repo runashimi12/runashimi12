@@ -1356,4 +1356,38 @@ def leccion7_3(request):
 
 @login_required(login_url="/login/")
 def leccion8(request):
-    return render(request, "./lecciones/leccion8.html")
+    id = 23
+    QuizUser, created = Usuario.objects.get_or_create(usuario=request.user)
+
+    if request.method == 'POST':
+        pregunta_pk = request.POST.get('pregunta_pk')
+        logging.basicConfig(level=logging.NOTSET)
+        pregunta_respondida = QuizUser.intentos.prefetch_related(
+            'pregunta').get(pregunta__pk=pregunta_pk)
+        # pregunta_respondida
+        respuesta_pk = request.POST.get('respuesta_pk')
+        try:
+            opcion_selecionada = pregunta_respondida.pregunta.opciones.get(
+                pk=respuesta_pk)
+
+        except ObjectDoesNotExist:
+            raise Http404
+
+        QuizUser.validar_intento(pregunta_respondida, opcion_selecionada)
+        puntaje_total = QuizUser.obtener_puntaje()
+        return redirect('resultado', pregunta_respondida.pk, puntaje_total)
+    else:
+        try:
+            # pregunta=Pregunta.objects.filter(leccion=id).get()
+            pregunta = QuizUser.obtener_nuevas_preguntas(id)
+            if pregunta is not None:
+                QuizUser.crear_intentos(pregunta)
+
+            context = {
+                'pregunta': pregunta
+
+            }
+        except ObjectDoesNotExist:
+            #raise Http404
+            return redirect('curso')
+    return render(request, "./lecciones/leccion8.html", context)
