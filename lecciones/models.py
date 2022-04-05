@@ -123,7 +123,7 @@ class Usuario(models.Model):
         puntaje_total=self.puntaje_total
         return puntaje_total
     def __str__(self):
-        return f'ID: {self.id}, Nombre: {self.usuario}' 
+        return f'ID: {self.id}, Nombre: {self.usuario}, grupo: {self.grupo}' 
     # class Meta:
     #     ordering = ["-puntaje_total"]
    

@@ -270,8 +270,8 @@ def tablero(request):
     max = 0
     max_1 = 0
     max_2 = 0
-    total_usaurios_quiz = Usuario.objects.all().order_by('-puntaje_total').exclude(puntaje_total=None)
-
+    grupo_sesion= Usuario.objects.get(usuario=request.user)
+    total_usaurios_quiz = Usuario.objects.all().filter(grupo__nombre=grupo_sesion.grupo).order_by('-puntaje_total').exclude(puntaje_total=None)
     contador = total_usaurios_quiz.count()
     page = request.GET.get('page', 1)
 
@@ -814,8 +814,7 @@ def leccion4_1(request):
 
         #preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
         # preguntas_restantes=respondidas.respuesta_seleccionada.correcta
-        logging.debug(
-            "**************7*****************Log mpregunta_pk.", pregunta_pk)
+        
         #pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
         pregunta_respondida = QuizUser.intentos.prefetch_related(
             'pregunta').get(pregunta__pk=pregunta_pk)
