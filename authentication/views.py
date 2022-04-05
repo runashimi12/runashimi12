@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+import logging
 from django.shortcuts import render
 
 # Create your views here.
@@ -13,6 +14,7 @@ from django.contrib.auth.models import User
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
 from .forms import ForgetForm, LoginForm, SignUpForm
+from lecciones.models import  Usuario
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -37,18 +39,21 @@ def login_view(request):
     return render(request, "./accounts/login.html", {"form": form, "msg" : msg})
 
 def register_user(request):
-
+    logging.basicConfig(level=logging.NOTSET)  # He
     msg     = None
     success = False
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
+            grupo= form.cleaned_data['groups']
+            # usuario=form.cleaned_data['username']
+
             form.save()
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
-
+            QuizUser = Usuario.objects.get_or_create(usuario=user, grupo=grupo)
             msg     = 'USUARIO CREADO <a href="/login">login</a>.'
             success = True
             

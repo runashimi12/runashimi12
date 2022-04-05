@@ -7,6 +7,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from lecciones.models import GrupoClase
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -52,6 +54,16 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
+    groups = forms.ModelChoiceField(
+        queryset=GrupoClase.objects.all(),
+       
+        widget=forms.Select(
+            attrs={
+                "placeholder" : "Seleccione Grupo", 
+                'class': 'form-control'}
+        ),
+
+        )
 
     class Meta:
         model = User
@@ -82,6 +94,8 @@ class ForgetForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
+
+    
 
     class Meta:
         model = User

@@ -11,13 +11,13 @@ import logging
 
  
 class GrupoClase(models.Model):
-    nombre=models.CharField(max_length=255, null=True)
+    nombre=models.CharField(max_length=255, null=True, blank=True)
     def __str__(self):
-        return f'GrupoClase: {self.id}: {self.nombre}'
+        return f'{self.nombre}'
 
-class GrupoDefault(models.Model):
-    grupodefault = GrupoClase(id=1, nombre='sinGrupo')
-    grupodefault.save()
+# class GrupoDefault(models.Model):
+#     grupodefault = GrupoClase()
+#     grupodefault.save()
 
 # class User(AbstractUser):
 #     ROLE_CHOICES = (
@@ -70,7 +70,7 @@ class Usuario(models.Model):
     usuario= models.OneToOneField(User, on_delete=models.CASCADE)
     # rol=models.ForeignKey(Rol, default=1, on_delete=models.SET_NULL, null=True)
     puntaje_total=models.DecimalField(verbose_name='Puntaje total', default=0, null=True, decimal_places=2, max_digits=10)
-    #grupo = models.ForeignKey(GrupoClase, blank=True, on_delete=models.SET_NULL, null=True)
+    grupo = models.ForeignKey(GrupoClase, null=True, on_delete=models.SET_NULL)
  
  
     def crear_intentos(self, pregunta):
