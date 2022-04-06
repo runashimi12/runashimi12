@@ -211,7 +211,7 @@
     <!--fin-->
 
 </div>
-
+<h1>Burro</h1>
 <!-- JS -->
 <!-- parte lógica -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!-- jQuery -->
@@ -219,6 +219,7 @@
 <script type ="text/javascript">
 
     let iconos = []
+    let iconoss = []
     let selecciones = []
     this.foundairs=0
    
@@ -242,6 +243,21 @@
             '<img src="/static/assets/img/leccion7/sapo.jpg" width="60%">',
         ]
         this.maxPairNumber=iconos.length;
+        iconoss = [
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Burro </span>',
+            '<span class="mb-0 font-small fw-bold text-gray-900">Caballo </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Gato </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Pollito </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Aguila </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Lobo </span>',
+            '<span class="mb-0 font-small fw-bold text-gray-900">Picaflor </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Conejo </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Perro </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Buhu </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Oveja </span>',
+            '<span class="mb-0 font-medium fw-bold text-gray-900">Sapo </span>',
+        ]
+        this.maxPairNumber=iconoss.length;
         
     }
     
@@ -250,11 +266,13 @@
     function generarTablero() {
         cargarIconos()
         selecciones = []
+        selecciones1 = []
         let tablero = document.getElementById("tablero")
         let tarjetas = []
-        for (let i = 0; i < 24; i++) {
+        let tarjetass = []
+        for (let i = 0; i < 12; i++) {
             tarjetas.push(`
-                <div class="area-tarjeta" onclick="seleccionarTarjeta(${i})">
+                <div class="area-tarjeta" onclick="seleccionarTarjeta(${i}, ${i})">
                     <div class="tarjeta" id="tarjeta${i}">
                         <div class="cara trasera" id="trasera${i}">
                             ${iconos[0]}
@@ -265,33 +283,66 @@
                     </div>
                 </div>        
                 `)
-            if (i % 2 == 1) {
                 iconos.splice(0, 1)
-            }
+            
+            // if (i % 2 == 1) {
+            //     iconos.splice(0, 1)
+            // }
         }
-        tarjetas.sort(() => Math.random() - 0.5)
-        tablero.innerHTML = tarjetas.join(" ")
+        for (let j = 0; j < 12; j++) {
+            tarjetass.push(`
+                <div class="area-tarjeta" onclick="seleccionarTarjeta(${j+13}, ${j})">
+                    <div class="tarjeta" id="tarjeta${j+13}">
+                        <div class="cara trasera" id="trasera${j}">
+                            ${iconoss[0]}
+                    
+                        </div>
+                        <div class="cara superior">
+                            <i class="far fa-question-circle"></i>
+                        </div>
+                    </div>
+                </div>        
+                `)
+               
+                // iconos.splice(0, 1)
+                iconoss.splice(0, 1)
+            // if (j % 1 == 1) {
+            //     iconos.splice(0, 1)
+            // }
+        }
+        const tarjetas2 = tarjetas.concat(tarjetass)         
+        tarjetas2.sort(() => Math.random() - 0.5)
+         tablero.innerHTML = tarjetas2.join(" ")
+        
+        // tarjetass.sort(() => Math.random() - 0.5)
+        // tablero.innerHTML = tarjetass.join(" ")
     }
 
-    function seleccionarTarjeta(i) {
+    function seleccionarTarjeta(i, j) {
         let tarjeta = document.getElementById("tarjeta" + i)
+       
         if (tarjeta.style.transform != "rotateY(180deg)") {
             tarjeta.style.transform = "rotateY(180deg)"
-            selecciones.push(i)
+                  
+            selecciones.push(j)
+            selecciones1.push(i)
         }
         if (selecciones.length == 2) {
-            deseleccionar(selecciones)
+           
+            deseleccionar(selecciones, selecciones1)
             selecciones = []
+            selecciones1 = []
         }
+       
     }
 
-    function deseleccionar(selecciones) {
+    function deseleccionar(selecciones, selecciones1) {
         setTimeout(() => {
             let trasera1 = document.getElementById("trasera" + selecciones[0])
-            let trasera2 = document.getElementById("trasera" + selecciones[1])
-            if (trasera1.innerHTML != trasera2.innerHTML) {
-                let tarjeta1 = document.getElementById("tarjeta" + selecciones[0])
-                let tarjeta2 = document.getElementById("tarjeta" + selecciones[1])
+            let trasera2 = document.getElementById("trasera" + selecciones[1])          
+            if (selecciones[0] != selecciones[1]) {
+                let tarjeta1 = document.getElementById("tarjeta" + selecciones1[0])
+                let tarjeta2 = document.getElementById("tarjeta" + selecciones1[1])
                 tarjeta1.style.transform = "rotateY(0deg)"
                 tarjeta2.style.transform = "rotateY(0deg)"
             } else {
@@ -303,10 +354,7 @@
                     $("#modal-form").modal("show");
                  setTimeout(()=>{
                     document.myform.submit()
-                 }, 3000);
-                
-                
-                                 
+                 }, 3000);   
                     
                     
                     generarTablero()
