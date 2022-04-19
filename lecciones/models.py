@@ -49,7 +49,7 @@ class Pregunta(models.Model):
     NUMER_DE_RESPUESTAS_PERMITIDAS = 1
     texto= models.TextField(verbose_name= 'Texto de la pregunta')
     max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=5,  decimal_places=2, max_digits=6)
-    leccion=models.CharField(max_length=255, null=True, default=1)
+    leccion=models.CharField(max_length=255, null=True, default=1, unique= True )
     def __str__(self):
         return f'P:  {self.texto} {self.max_puntaje}' 
   # respuesta_p=models.CharField(max_length=255, null=True)
