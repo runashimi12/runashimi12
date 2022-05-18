@@ -26,7 +26,8 @@ class PreguntaAdmin(admin.ModelAdmin):
 
 class PreguntasRespondidasAdmin(admin.ModelAdmin):   
     list_display = ['quizUser', 'pregunta', 'respuesta', 'correcta', 'puntaje_obtenido'] 
-    search_fields=['quizUser__usuario__username']   
+    search_fields=['quizUser__usuario__username', 'quizUser__grupo']  
+    list_filter = ( 'quizUser__grupo', 'quizUser__usuario__username',) 
     class Meta:
         model= PreguntaRespondida
 
