@@ -23,8 +23,8 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 #DEBUG= False
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', '0.0.0.0:$PORT', config('SERVER', default='0.0.0.0:$PORT')]
-# ALLOWED_HOSTS =['*']
+# ALLOWED_HOSTS = ['localhost', '0.0.0.0:$PORT', config('SERVER', default='0.0.0.0:$PORT')]
+ALLOWED_HOSTS =['*']
 
 # Application definition
 
