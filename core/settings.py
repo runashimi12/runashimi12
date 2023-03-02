@@ -24,7 +24,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 # load production server from .env
 # ALLOWED_HOSTS = ['localhost', '0.0.0.0:$PORT', config('SERVER', default='0.0.0.0:$PORT')]
-ALLOWED_HOSTS =['runashimi-production.up.railway.app']
+ALLOWED_HOSTS =['web-production-aaa6b.up.railway.app']
 
 # Application definition
 
