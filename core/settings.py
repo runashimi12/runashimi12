@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
         'PORT' :'5432',
         }
 }"""
-DATABASE_URL="postgresql://postgres:CP0syfADDmUlFpM2N6jI@containers-us-west-93.railway.app:6065/railway"
+DATABASE_URL="postgresql://postgres:AvcPN78d6y8Acadl3Q3C@containers-us-west-33.railway.app:7609/railway"
 DATABASES= {
     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800 )
 }
