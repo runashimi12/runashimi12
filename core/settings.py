@@ -93,7 +93,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
         'PORT' : '5432',
     }
 } """
-"""DATABASES = {
+"""
+
+
+DATABASES = {
     'default': {
         'ENGINE' :'django.db.backends.postgresql_psycopg2',
         'NAME' :'d47lnb9r0thfif',
@@ -103,7 +106,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
         'PORT' :'5432',
         }
 }"""
-DATABASE_URL="postgresql://postgres:AvcPN78d6y8Acadl3Q3C@containers-us-west-33.railway.app:7609/railway"
+DATABASE_URL="postgresql://postgres:YLBUZ87ks7RcvNNBzetV@containers-us-west-178.railway.app:6038/railway"
+
 DATABASES= {
     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800 )
 }
